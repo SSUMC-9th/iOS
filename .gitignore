@@ -1,62 +1,57 @@
 # Xcode
 #
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+# 개발 환경과 무관하게 프로젝트를 빌드할 때 생성되는 파일들 무시
 
-## User settings
+.DS_Store
+.user
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.xcworkspace
 xcuserdata/
 
-## Obj-C/Swift specific
-*.hmap
+# 빌드 디렉토리
+build/
+DerivedData/
+*.log
 
-## App packaging
-*.ipa
-*.dSYM.zip
-*.dSYM
-
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
-
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-# Package.resolved
-# *.xcodeproj
-#
-# Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
-# hence it is not needed unless you have added a package configuration file to your project
-# .swiftpm
-
-.build/
+# Test 결과물
+*.plist
+*.gcda
 
 # CocoaPods
 #
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# Pods/
-#
-# Add this line if you want to avoid checking in source code from the Xcode workspace
-# *.xcworkspace
+# CocoaPods로 관리하는 의존성 무시
+Pods/
+Podfile.lock
 
 # Carthage
 #
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
+# Carthage로 관리하는 의존성 무시
 Carthage/Build/
+Carthage/Checkouts/
 
-# fastlane
+# Swift Package Manager
 #
-# It is recommended to not store the screenshots in the git repo.
-# Instead, use fastlane to re-generate the screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
+# Swift Package Manager 관련 파일 무시
+.swiftpm/
+Package.resolved
+.build/
 
+# Fastlane
+#
+# Fastlane 사용 시 무시할 파일
 fastlane/report.xml
 fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+fastlane/screenshots/
+fastlane/test_output/
+
+# 기타
+#
+# 비주얼 스튜디오 코드 설정 파일
+.vscode/
+
+# Tuist
+#
+# Tuist 프로젝트의 설정 파일
+/.tuist/
