@@ -5,8 +5,8 @@ SSUMC 9기 iOS 스터디조
 | 문인성 | 이경민 | 김세은 |
 |:----------:|:----------:|:----------:|
 | 핀 | 키미 | 써니 |
-| [serfingseal](https://github.com/surfingseal) | [kmin817](https://github.com/kmin817) | [soeun11](https://github.com/soeun11) |
-[dearSE](https://github.com/dedrSE)
+| [serfingseal](https://github.com/surfingseal) | [kmin817](https://github.com/kmin817) | [dearSE](https://github.com/dedrSE) |
+
 ## branch 컨벤션 (규칙)
 
 ```zsh
