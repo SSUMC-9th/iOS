@@ -9,215 +9,101 @@ import Foundation
 import SwiftUI
 
 struct UserInfoManage: View {
-    @AppStorage("userID") var userID: String = ""
-    @AppStorage("userName") private var userName: String = ""
+    @AppStorage("userId") private var userId: String = "kmin817"
+    @AppStorage("userName") private var storedUserName: String = ""
+    @State private var tempName: String = ""
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack{
             
-            profileHeader
+            topNav
                 .padding(.horizontal, 14)
-                .padding(.top, 59)
             
-            membershipPointSection
+            Spacer().frame(height:53)
+            
+            mainContent
                 .padding(.horizontal, 14)
-                .padding(.top, 10)
-            
-            clubMembershipSection
-                .padding(.horizontal, 14)
-                .padding(.top, 15)
-            
-            statusInfoSection
-                .padding(.horizontal, 14)
-                .padding(.top, 33)
-            
-            bottomIconSection
-                .padding(.horizontal, 14)
-                .padding(.top, 33)
-            
-            Spacer()
             
         }
-    }
-    
-    private var profileHeader: some View {
-        HStack(spacing: 0) {
-            Text("이*원님")
-                .frame(width: 74, height:36)
-                .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.black)
-//            Text("\(userName)님")
-//                .frame(width: 74, height:36)
-//                .font(.system(size: 24, weight: .bold))
-//                .foregroundColor(.black)
-            
-            Text("WELCOME")
-                .frame(width: 81, height:25 )
-                .font(.system(size: 14, weight: .bold))
-                .foregroundColor(.white)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color(hex: "#47CDD2"))
-                .cornerRadius(6)
-                .padding(.leading, 5)
-            
-            Spacer()
-            
-            Button(action:{
-                print("회원정보 버튼 눌림")
-            }){
-                Text("회원정보")
-                    .frame(width:72, height: 28)
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 4)
-                    .padding(.vertical, 4)
-                    .background(Color("gray07"))
-                    .cornerRadius(16)
+        .onAppear {
+                tempName = storedUserName
             }
-        }
+        Spacer()
+        
     }
     
-    private var membershipPointSection: some View {
-        HStack(spacing: 0) {
-            Text("멤버십 포인트")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Color("gray04"))
-            
-            Text("500P")
-                .font(.system(size: 14, weight: .regular))
-                .foregroundColor(.black)
-                .padding(.leading, 9)
-        }
-    }
-    
-    private var clubMembershipSection: some View {
-        HStack {
-            Text("클럽 멤버십")
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.white)
-            
-            Image(systemName: "chevron.right")
-                .foregroundColor(.white)
-            
-            Spacer()
-        }
-        .padding(.leading, 8)
-        .padding(.vertical, 12)
-        .background(
-            LinearGradient(gradient: Gradient(colors: [Color(hex: "#AB8BFF"), Color(hex: "#8EAEF3"), Color(hex: "#5DCCEC")]),
-                           startPoint: .leading,
-                           endPoint: .trailing)
-        )
-        .cornerRadius(8)
-    }
-    
-    private var statusInfoSection: some View {
-        HStack(spacing: 0){
-            VStack{
-                Text("쿠폰")
-                    .font(.system(size:16))
-                    .foregroundStyle(Color("gray02"))
-                    .padding(.top, 12)
-                    .padding(.bottom, 8)
-                Text("2")
-                    .font(.system(size:16))
-                    .foregroundStyle(Color(.black))
-                    .padding(.bottom, 12)
-            }
-            
-            verticalDivider
-            
-            VStack{
-                Text("스토어 교환권")
-                    .font(.system(size:16))
-                    .foregroundStyle(Color("gray02"))
-                    .padding(.top, 12)
-                    .padding(.bottom, 8)
-                    .frame(width: 107)
-                Text("0")
-                    .font(.system(size:16))
-                    .foregroundStyle(Color(.black))
-                    .padding(.bottom, 12)
-            }
-            
-            verticalDivider
-            
-            VStack{
-                Text("모바일 티켓")
-                    .font(.system(size:16))
-                    .foregroundStyle(Color("gray02"))
-                    .padding(.top, 12)
-                    .padding(.bottom, 8)
-                Text("0")
-                    .font(.system(size:16))
-                    .foregroundStyle(Color(.black))
-                    .padding(.bottom, 12)
-            }
-        }
-        .frame(height: 76)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 24)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.white)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(Color("gray02"), lineWidth: 1)
-        )
-    }
-    
-    private var verticalDivider: some View {
-        Rectangle()
-            .frame(width: 1, height: 44)
-            .foregroundColor(Color("gray02"))
-            .padding(.trailing, 23)
-            .padding(.leading, 33)
-    }
-    
-    
-    private var bottomIconSection: some View {
+    private var topNav: some View {
         HStack{
-            VStack(spacing: 12) {
-                Image("film-reel")
+            Button(action:{
+                //  뒤로 가는 액션 구현
+            }){
+                Image(systemName: "arrow.left")
                     .resizable()
-                    .frame(width: 36, height: 36)
-                Text("영화별예매")
-                    .font(.system(size:16))
-            }
-            .frame(maxWidth: .infinity)
+                    .frame(width:26, height:22)
+                    .foregroundColor(Color.black)
+            }.frame(width: 30, height: 44, alignment: .center)
             
-            VStack(spacing: 12) {
-                Image("pin-map")
-                    .resizable()
-                    .frame(width: 36, height: 36)
-                Text("극장별예매")
-                    .font(.system(size:16))
-            }
-            .frame(maxWidth: .infinity)
+            Spacer()
             
-            VStack(spacing: 12) {
-                Image("film-sofa")
-                    .resizable()
-                    .frame(width: 36, height: 36)
-                Text("특별관예매")
-                    .font(.system(size:16))
-            }
-            .frame(maxWidth: .infinity)
+            Text("회원정보 관리")
+                .font(.system(size:16, weight:.medium))
+                .foregroundColor(.black)
             
-            VStack(spacing: 12) {
-                Image("film-mobileorder")
-                    .resizable()
-                    .frame(width: 36, height: 36)
-                Text("모바일오더")
-                    .font(.system(size:16))
+            Spacer()
+            
+            Color.clear.frame(width: 30, height: 44)
+        }
+        .padding(.horizontal)
+        .frame(height:44)
+        
+    }
+    
+    private var mainContent: some View {
+        VStack(alignment: .leading){
+            Text("기본정보")
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(.black)
+                .padding(.bottom, 4)
+            
+            // 아이디
+            Text(userId)
+                .font(.system(size: 14))
+                .foregroundColor(Color.black)
+                .padding(.top, 8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.white)
+            
+            Divider().padding(.bottom, 24)
+            
+            HStack{
+                TextField("이곳에 입력하세요", text: $tempName)
+                    .font(.system(size:14))
+                    .padding(.top, 8)
+                
+                Button(action:{
+                    storedUserName = tempName
+                }){
+                    Text("변경")
+                        .frame(width:38, height:20)
+                        .font(.system(size:12, weight:.bold))
+                        .foregroundColor(Color("gray03"))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color("gray03"), lineWidth: 1)
+                        )
+                }
             }
-            .frame(maxWidth: .infinity)
+            
+            Divider()
         }
     }
+    
 }
 
-#Preview{
+
+
+#Preview {
     UserInfoManage()
 }
