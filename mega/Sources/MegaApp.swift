@@ -4,7 +4,7 @@ import SwiftUI
 struct MegaApp: App {
     var body: some Scene {
         WindowGroup {
-            MovieView()
+            LoginView()
         }
     }
 }

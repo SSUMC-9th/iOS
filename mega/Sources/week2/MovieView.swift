@@ -92,9 +92,6 @@ struct MovieView: View {
 }
 
 
-
-
-
-#Preview {
-    MovieView()
-}
+//#Preview {
+//    MovieView()
+//}

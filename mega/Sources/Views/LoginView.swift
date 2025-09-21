@@ -9,6 +9,13 @@ import Foundation
 import SwiftUI
 
 struct LoginView: View {
+    // AppStorage 사용해서 아이디 비번 저장하는 변수
+    @AppStorage("userID") var storedID:String=""
+    @AppStorage("userPWD") var storedPWD:String=""
+    
+    @State private var viewModel = LoginViewModel(loginModel:LoginModel(id: "", pwd: ""))
+    
+    
     var body: some View {
         VStack {
             // 상단 네비게이션 바
@@ -23,12 +30,12 @@ struct LoginView: View {
             // 아이디 및 비밀번호 입력
             VStack(spacing: 0) {
                 VStack(alignment: .leading) {
-                    TextField("아이디", text: .constant(""))
+                    TextField("아이디", text: $viewModel.loginModel.id)
                     Divider()
                 }.padding(.bottom, 30)
                 
                 VStack(alignment: .leading) {
-                    SecureField("비밀번호", text: .constant(""))
+                    SecureField("비밀번호", text: $viewModel.loginModel.pwd)
                     Divider()
                 }
             }
