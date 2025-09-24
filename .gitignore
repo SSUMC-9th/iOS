@@ -1,0 +1,47 @@
+# General macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Xcode
+#
+# User-specific settings and generated files
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+*.log
+
+# Swift Package Manager
+.swiftpm/
+Package.resolved
+.build/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# Tuist
+Derived/
+Tuist/.build
+/.tuist/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# Visual Studio Code
+.vscode/
