@@ -221,3 +221,11 @@ struct UserInfo: View {
 #Preview{
     UserInfo()
 }
+
+#Preview("iPhone 11") {
+    UserInfo()
+}
+
+#Preview("iPhone 16 Pro") {
+    UserInfo()
+}

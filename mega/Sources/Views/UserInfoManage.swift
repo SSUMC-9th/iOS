@@ -107,3 +107,11 @@ struct UserInfoManage: View {
 #Preview {
     UserInfoManage()
 }
+
+#Preview("iPhone 11") {
+    UserInfoManage()
+}
+
+#Preview("iPhone 16 Pro") {
+    UserInfoManage()
+}
