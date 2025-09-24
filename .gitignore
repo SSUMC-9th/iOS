@@ -1,57 +1,47 @@
+# General macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
 # Xcode
 #
-# 개발 환경과 무관하게 프로젝트를 빌드할 때 생성되는 파일들 무시
-
-.DS_Store
-.user
-*.xcuserstate
-*.xcscmblueprint
-*.xccheckout
-*.xcworkspace
+# User-specific settings and generated files
 xcuserdata/
-
-# 빌드 디렉토리
-build/
+*.xcuserstate
 DerivedData/
+build/
 *.log
 
-# Test 결과물
-*.plist
-*.gcda
-
-# CocoaPods
-#
-# CocoaPods로 관리하는 의존성 무시
-Pods/
-Podfile.lock
-
-# Carthage
-#
-# Carthage로 관리하는 의존성 무시
-Carthage/Build/
-Carthage/Checkouts/
-
 # Swift Package Manager
-#
-# Swift Package Manager 관련 파일 무시
 .swiftpm/
 Package.resolved
 .build/
 
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# Tuist
+Derived/
+Tuist/.build
+/.tuist/
+
 # Fastlane
-#
-# Fastlane 사용 시 무시할 파일
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/
 fastlane/test_output/
 
-# 기타
-#
-# 비주얼 스튜디오 코드 설정 파일
+# Visual Studio Code
 .vscode/
-
-# Tuist
-#
-# Tuist 프로젝트의 설정 파일
-/.tuist/
