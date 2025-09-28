@@ -15,7 +15,7 @@ struct MegaNavigation: View {
     private var homeTab: some View {
         TabView {
             Tab("홈", systemImage:"house"){
-                MainView()
+                HomeView()
             }
             Tab("바로예매", systemImage:"video"){
                 
