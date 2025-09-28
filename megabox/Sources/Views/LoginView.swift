@@ -9,6 +9,15 @@ import SwiftUI
 
 
 struct LoginView: View {
+    @StateObject var loginViewModel: LoginViewModel
+    @AppStorage("savedId") private var savedId: String = ""
+    @AppStorage("savedPwd") private var savedPwd: String = ""
+    @AppStorage("savedName") private var savedName: String = ""
+    
+    init() {
+            self._loginViewModel = .init(wrappedValue: LoginViewModel(loginModel: LoginModel(id:"", pwd: "")))
+    }
+    
     var body: some View {
         
         ZStack {
@@ -52,7 +61,7 @@ struct LoginView: View {
     
     private var loginInputViewGroup: some View {
         VStack {
-            TextField("아이디", text: .constant(""))
+            TextField("아이디", text: $loginViewModel.loginModel.id)
             
             Divider()               // 구분선
                 .frame(maxWidth: .infinity)
@@ -61,7 +70,7 @@ struct LoginView: View {
             Spacer()
                 .frame(height: 40)
             
-            SecureField("비밀번호", text: .constant(""))
+            SecureField("비밀번호", text: $loginViewModel.loginModel.pwd)
             
             Divider()               // 구분선
                 .frame(maxWidth: .infinity)
@@ -70,7 +79,15 @@ struct LoginView: View {
     }
     
     private var loginButton: some View {
-        Button(action: {}) {
+        Button(action: {
+//            print("현재 입력된 아이디:", loginViewModel.loginModel.id)
+//            print("현재 입력된 비번:", loginViewModel.loginModel.pwd)
+            savedId = loginViewModel.loginModel.id
+            savedPwd = loginViewModel.loginModel.pwd
+            savedName = loginViewModel.loginModel.id + "_init"
+            
+//            print("저장 완료 - id:\(savedId), name:\(savedName)")
+        }) {
             Text("로그인")
                 .font(.bold18)
                 .foregroundColor(.white)
@@ -111,11 +128,20 @@ struct LoginView: View {
     private var promotionImage: some View {
         Image("umc")
             .resizable()
-            .scaledToFit()             // ✅ 가로 크기에 맞춰 세로 자동 조절
+            .scaledToFit()             // 가로 크기에 맞춰 세로 자동 조절
             .frame(maxWidth: .infinity)   // 부모 VStack 폭 꽉 채우기
     }
 }
 
 #Preview {
+    LoginView()
+}
+
+
+#Preview("iPhone 11") {
+    LoginView()
+}
+
+#Preview("iPhone 16 Pro Max") {
     LoginView()
 }
