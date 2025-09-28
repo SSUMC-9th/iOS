@@ -10,8 +10,9 @@ import SwiftUI
 
 struct LoginView: View {
     // AppStorage 사용해서 아이디 비번 저장하는 변수
-    @AppStorage("userID") var storedID:String=""
-    @AppStorage("userPWD") var storedPWD:String=""
+    @AppStorage("userID") var storedID:String="kmin817"
+    @AppStorage("userPWD") var storedPWD:String="0000"
+    @Binding var isLoggedIn: Bool
     
     @State private var viewModel = LoginViewModel(loginModel:LoginModel(id: "", pwd: ""))
     
@@ -23,7 +24,7 @@ struct LoginView: View {
                 Spacer()
                 Text("로그인")
                     .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
                 Spacer()
             }
             Spacer().frame(height:80)
@@ -42,18 +43,20 @@ struct LoginView: View {
             .padding(.horizontal, 16)
             
             // 로그인 버튼
-            Button(action: {}) {
-                Text("로그인")
+            Button(action: {
+                if viewModel.loginModel.id == storedID && viewModel.loginModel.pwd == storedPWD {
+                    self.isLoggedIn = true
+                } else {
+                    print("로그인 실패: 아이디 또는 비밀번호가 일치하지 않습니다.")}
+            }) {Text("로그인")
                     .font(.PretendardSemiBold18)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 15)
-            }
-            .background(Color("purple03"))
-            .cornerRadius(10)
-            .padding(.horizontal, 16)
-            .padding(.top, 37.5)
-
+                    .padding(.vertical, 15)}
+                .background(Color("purple03"))
+                .cornerRadius(10)
+                .padding(.horizontal, 16)
+                .padding(.top, 37.5)
             
             // 회원가입하기
             Text("회원가입")
@@ -92,16 +95,13 @@ struct LoginView: View {
     }
 }
 
-
-#Preview {
-    LoginView()
-}
-
 #Preview("iPhone 11") {
-    LoginView()
+    @State var previewIsLoggedIn: Bool = false
+    return LoginView(isLoggedIn: $previewIsLoggedIn)
 }
 
 #Preview("iPhone 16 Pro") {
-    LoginView()
+    @State var previewIsLoggedIn: Bool = false
+    return LoginView(isLoggedIn: $previewIsLoggedIn)
 }
 
