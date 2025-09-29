@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @AppStorage("movieName") private var movieName: String = ""
-    private var viewModel: MegaMovieViewModel = .init()
+    @State private var viewModel: MegaMovieViewModel = .init()
     
     var body: some View {
         ScrollView{
@@ -21,6 +21,11 @@ struct HomeView: View {
                 topSegment2
                     .padding(.bottom, 25)
                 moviePoster
+                    .padding(.bottom, 37)
+                moviePid
+                    .padding(.bottom, 5.5)
+                moviePidImg
+                    .padding(.trailing, 16)
                 
             }.padding(.leading, 16)
             
@@ -89,10 +94,41 @@ struct HomeView: View {
     }
     
     private var moviePoster:some View {
-        ScrollView(.horizontal){
-            HStack(spacing:24){
-                MegaMovieCard(movieInfo: viewModel.movieViewModel[viewModel.currentIndex])
+        ScrollView(.horizontal, showsIndicators: false){
+            LazyHStack(spacing:24){
+                ForEach(viewModel.movieViewModel) { movie in
+                    MegaMovieCard(movieInfo: movie)
+                }
             }
+        }.frame(maxWidth: .infinity)
+    }
+    
+    private var moviePid:some View{
+        HStack{
+            Text("알고보면 더 재밌는 무비피드")
+                .font(.system(size:24))
+                .lineLimit(1)
+                .frame(height:39)
+            
+            Spacer()
+            Button(action:{
+                
+            }){
+                Image(systemName: "arrow.right")
+                    .foregroundStyle(Color.black)
+                    .frame(width: 39, height:39)
+            }
+        }.frame(maxWidth: .infinity, minHeight:39)
+            .padding(.trailing, 16)
+
+    }
+    
+    private var moviePidImg:some View{
+        VStack{
+            Image("mononoWolf")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                
         }
     }
 }

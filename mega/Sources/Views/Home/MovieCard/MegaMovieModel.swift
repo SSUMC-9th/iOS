@@ -8,7 +8,8 @@
 import SwiftUI
 import Foundation
 
-struct MegaMovieModel{
+struct MegaMovieModel:Identifiable{
+    let id: UUID = UUID() 
     let movieImage: Image
     let movieName: String
     let movieReserCount: String

@@ -16,14 +16,13 @@ struct MegaMovieCard: View {
     
     var body: some View {
         VStack{
-            Image("knife")
+            movieInfo.movieImage
                 .resizable()
                 .aspectRatio(contentMode:.fit)
                 .frame(width:148, height:212)
             
             reserveBtn
             movieSubInfo
-            
             
         }.frame(width:148, height:318)
     }
@@ -37,7 +36,7 @@ struct MegaMovieCard: View {
                 .font(.PretendardSemiBold18)
                 .foregroundStyle(Color("purple03"))
         }
-        .frame(width: 138, height:46)
+        .frame(width: 148, height:36)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color("purple03"), lineWidth: 2)
@@ -45,11 +44,14 @@ struct MegaMovieCard: View {
     }
     
     private var movieSubInfo:some View {
-        VStack{
-            Text("귀멸의 칼날")
-                .font(.PretendardBold24)
-            Text("누적관객수 10만")
-                .font(.PretendardBold24)
+        VStack(spacing: 0){
+            Text(movieInfo.movieName)
+                .font(.bold22)
+                .frame(width:149, height: 30, alignment: .leading)
+            
+            Text(movieInfo.movieReserCount)
+                .font(.medium18)
+                .frame(width:149, height: 21, alignment: .leading)
         }
     }
 }
