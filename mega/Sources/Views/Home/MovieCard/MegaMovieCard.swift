@@ -57,5 +57,5 @@ struct MegaMovieCard: View {
 }
 
 #Preview {
-    MegaMovieCard(movieInfo: .init(movieImage: .init(.f1), movieName: "F1 더 무비", movieReserCount: "누적관객수 10만"))
+    MegaMovieCard(movieInfo: .init(movieImage: .init(.f1), movieName: "F1 더 무비", movieEngName: "F1: The Movie", movieReserCount: "누적관객수 10만"))
 }

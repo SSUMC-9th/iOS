@@ -9,11 +9,14 @@ import Foundation
 import SwiftUI
 
 struct MovieDetail:View {
+    @Environment(\.dismiss) private var dismiss
+    
+    let movie:MegaMovieModel
     private let movieDescription: String = "최고가 되지 못한 전설 vs 최고가 되고 싶은 루키\n\n한때 주목받는 유망주였지만 끔찍한 사고로 F1에서 우승하지 못하고\n한순간에 추락한 드라이버 '손; 헤이스'(브래드 피트).\n그의 오랜 동료인 '루벤 세르반테스'(하비에르 바르뎀)에게 레이싱 복귀를 제안받으며 최하위 팀인 APXGP에 합류한다."
     
     var body: some View {
         VStack(spacing: 0){
-            movieDetailHeader
+            topNavigationBar
                 .padding(.horizontal, 16)
             movieSummarize
                 .padding(.bottom, 35)
@@ -23,19 +26,27 @@ struct MovieDetail:View {
                 .padding(.horizontal, 16)
             Spacer()
         }.frame(maxWidth:.infinity, maxHeight: .infinity)
+        .navigationTitle(movie.movieName)
+        .navigationBarHidden(true)
     }
     
-    private var movieDetailHeader: some View {
-        HStack{
-            Image(systemName: "arrow.left")
-                .resizable()
-                .frame(width:39, height:39)
-                .aspectRatio(contentMode: .fit)
+    private var topNavigationBar: some View {
+        HStack {
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "arrow.left")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundStyle(Color.black)
+                    .aspectRatio(contentMode: .fit)
+            }
             Spacer()
-            Text("F1 더 무비")
+            Text(movie.movieName)
                 .font(.PretendardRegular16)
-            Spacer()
-                .frame(width: 150)
+                .foregroundColor(.black)
+            
+            Spacer().frame(width:150)
         }
         .frame(maxWidth:.infinity, minHeight: 54)
     }
@@ -47,13 +58,13 @@ struct MovieDetail:View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: .infinity)
             HStack{
-                Text("F1 더 무비")
+                Text(movie.movieName)
                     .font(.bold24)
             }.frame(maxWidth: .infinity)
                 .padding(.horizontal, 16)
             
             HStack{
-                Text("F1 더 무비")
+                Text(movie.movieEngName)
                     .font(.semiBold14)
                     .foregroundStyle(Color("gray03"))
             }.frame(maxWidth: .infinity)
@@ -61,6 +72,7 @@ struct MovieDetail:View {
             
             Text(movieDescription)
                 .font(.PretendardRegular16)
+                .foregroundStyle(Color("gray03"))
                 .lineSpacing(4)
                 .padding(.top, 10)
                 .fixedSize(horizontal: false, vertical: true)
@@ -90,7 +102,7 @@ struct MovieDetail:View {
     
     private var movieSubInfo: some View{
         HStack(spacing:0){
-            Image("f1")
+            movie.movieImage
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height:120)
@@ -111,5 +123,5 @@ struct MovieDetail:View {
 }
 
 #Preview {
-    MovieDetail()
+    MovieDetail(movie:MegaMovieModel(movieImage: Image("f1"), movieName: "F1 더 무비", movieEngName: "F1: The Movie", movieReserCount: "누적관객수 10만"))
 }

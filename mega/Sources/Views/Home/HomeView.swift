@@ -97,7 +97,9 @@ struct HomeView: View {
         ScrollView(.horizontal, showsIndicators: false){
             LazyHStack(spacing:24){
                 ForEach(viewModel.movieViewModel) { movie in
-                    MegaMovieCard(movieInfo: movie)
+                    NavigationLink(destination: MovieDetail(movie:movie)){
+                        MegaMovieCard(movieInfo: movie)
+                    }
                 }
             }
         }.frame(maxWidth: .infinity)

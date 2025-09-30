@@ -12,6 +12,7 @@ struct MegaMovieModel:Identifiable{
     let id: UUID = UUID() 
     let movieImage: Image
     let movieName: String
+    let movieEngName: String
     let movieReserCount: String
 }
 
