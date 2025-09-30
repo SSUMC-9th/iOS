@@ -16,7 +16,11 @@ struct MovieDetail:View {
             movieDetailHeader
                 .padding(.horizontal, 16)
             movieSummarize
+                .padding(.bottom, 35)
             movieTabHeader
+                .padding(.bottom, 17)
+            movieSubInfo
+                .padding(.horizontal, 16)
             Spacer()
         }.frame(maxWidth:.infinity, maxHeight: .infinity)
     }
@@ -64,20 +68,45 @@ struct MovieDetail:View {
     }
 
     private var movieTabHeader: some View{
-        HStack{
+        HStack(spacing:0){
             Button(action:{
                 
             }){
                 Text("상세 정보")
-            }
+                    .font(.bold22)
+                    .foregroundStyle(Color.black)
+            }.frame(maxWidth: .infinity, minHeight: 35)
             
             Button(action:{
                 
             }){
                 Text("실관람평")
-            }
+                    .font(.bold22)
+                    .foregroundStyle(Color("gray03"))
+            }.frame(maxWidth: .infinity, minHeight: 35)
             
         }.frame(maxWidth:.infinity, minHeight: 35)
+    }
+    
+    private var movieSubInfo: some View{
+        HStack(spacing:0){
+            Image("f1")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height:120)
+            
+            VStack(alignment: .leading){
+                Text("12세 이상 관람")
+                    .font(.semiBold13)
+                    .padding(.bottom, 9)
+                
+                Text("123123")
+                    .font(.semiBold13)
+                Spacer()
+            }.padding(.leading, 13)
+            Spacer()
+            
+        }.frame(maxWidth:.infinity, maxHeight: 120)
     }
 }
 
