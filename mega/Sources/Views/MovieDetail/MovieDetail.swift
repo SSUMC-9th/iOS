@@ -36,7 +36,7 @@ struct MovieDetail:View {
             Spacer()
         }.frame(maxWidth:.infinity, maxHeight: .infinity)
         .navigationTitle(movie.movieName)
-        .navigationBarHidden(true)
+        .toolbar(.hidden, for:.navigationBar)
         .animation(.easeInOut, value: selectedTab)
     }
     
@@ -164,6 +164,10 @@ struct MovieDetail:View {
 
 }
 
-#Preview {
+#Preview("iPhone 11") {
+    MovieDetail(movie:MegaMovieModel(movieImage: Image("f1"), movieName: "F1 더 무비", movieEngName: "F1: The Movie", movieReserCount: "누적관객수 10만"))
+}
+
+#Preview("iPhone 16 Pro") {
     MovieDetail(movie:MegaMovieModel(movieImage: Image("f1"), movieName: "F1 더 무비", movieEngName: "F1: The Movie", movieReserCount: "누적관객수 10만"))
 }

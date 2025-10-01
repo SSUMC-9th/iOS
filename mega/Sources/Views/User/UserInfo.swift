@@ -220,10 +220,6 @@ struct UserInfo: View {
     }
 }
 
-#Preview{
-    UserInfo()
-}
-
 #Preview("iPhone 11") {
     UserInfo()
 }

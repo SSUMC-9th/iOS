@@ -96,15 +96,16 @@ struct HomeView: View {
     }
     
     private var moviePoster:some View {
-        ScrollView(.horizontal, showsIndicators: false){
+        ScrollView(.horizontal){
             LazyHStack(spacing:24){
                 ForEach(viewModel.movieViewModel) { movie in
-                    NavigationLink(destination: MovieDetail(movie:movie)){
+                    NavigationLink(destination: {MovieDetail(movie:movie)}){
                         MegaMovieCard(movieInfo: movie)
                     }
                 }
             }
         }.frame(maxWidth: .infinity)
+        .scrollIndicators(.hidden)
     }
     
     private var moviePid:some View{
