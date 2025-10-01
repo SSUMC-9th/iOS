@@ -9,13 +9,15 @@ import SwiftUI
 
 
 struct LoginView: View {
+    var router: NavigationRouter   // 라우터 받기
     @StateObject var loginViewModel: LoginViewModel
     @AppStorage("savedId") private var savedId: String = ""
     @AppStorage("savedPwd") private var savedPwd: String = ""
     @AppStorage("savedName") private var savedName: String = ""
     
-    init() {
-            self._loginViewModel = .init(wrappedValue: LoginViewModel(loginModel: LoginModel(id:"", pwd: "")))
+    init(router: NavigationRouter) {
+        self.router = router
+        self._loginViewModel = .init(wrappedValue: LoginViewModel(loginModel: LoginModel(id:"", pwd: "")))
     }
     
     var body: some View {
@@ -134,14 +136,13 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView(router: NavigationRouter())
 }
 
-
 #Preview("iPhone 11") {
-    LoginView()
+    LoginView(router: NavigationRouter())
 }
 
 #Preview("iPhone 16 Pro Max") {
-    LoginView()
+    LoginView(router: NavigationRouter())
 }

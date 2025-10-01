@@ -1,11 +1,25 @@
 import SwiftUI
 
 public struct ContentView: View {
-    public init() {}
-
+    @State private var router = NavigationRouter() // 라우터 인스턴스 생성
+    
     public var body: some View {
-        Text("Hello, World!")
-            .padding()
+        NavigationStack(path: $router.path) {
+            HomeView()
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .home:
+                    HomeView()
+                case .profile:
+                    ProfileView()
+                case .mainTab:
+                    MainTabView()
+                case .login:
+                    LoginView(router: router)
+                }
+            }
+            .navigationTitle("Test")
+        }
     }
 }
 
