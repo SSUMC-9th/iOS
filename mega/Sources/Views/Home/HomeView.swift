@@ -138,6 +138,10 @@ struct HomeView: View {
     }
 }
 
-#Preview {
+#Preview("iPhone 11") {
+    HomeView()
+}
+
+#Preview("iPhone 16 Pro") {
     HomeView()
 }
