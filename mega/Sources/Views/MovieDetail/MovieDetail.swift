@@ -10,6 +10,8 @@ import SwiftUI
 
 struct MovieDetail:View {
     @Environment(\.dismiss) private var dismiss
+    @State private var selectedTab: MovieDetailTab = .info
+    var menu = ["상세 정보", "실관람평"]
     
     let movie:MegaMovieModel
     private let movieDescription: String = "최고가 되지 못한 전설 vs 최고가 되고 싶은 루키\n\n한때 주목받는 유망주였지만 끔찍한 사고로 F1에서 우승하지 못하고\n한순간에 추락한 드라이버 '손; 헤이스'(브래드 피트).\n그의 오랜 동료인 '루벤 세르반테스'(하비에르 바르뎀)에게 레이싱 복귀를 제안받으며 최하위 팀인 APXGP에 합류한다."
@@ -22,12 +24,20 @@ struct MovieDetail:View {
                 .padding(.bottom, 35)
             movieTabHeader
                 .padding(.bottom, 17)
-            movieSubInfo
-                .padding(.horizontal, 16)
+            
+            if selectedTab == .info {
+                movieSubInfo
+                    .padding(.horizontal, 16)
+            } else if selectedTab == .reviews {
+                reviewSection
+                    .padding(.horizontal, 16)
+            }
+            
             Spacer()
         }.frame(maxWidth:.infinity, maxHeight: .infinity)
         .navigationTitle(movie.movieName)
         .navigationBarHidden(true)
+        .animation(.easeInOut, value: selectedTab)
     }
     
     private var topNavigationBar: some View {
@@ -78,27 +88,46 @@ struct MovieDetail:View {
                 .fixedSize(horizontal: false, vertical: true)
         }
     }
-
-    private var movieTabHeader: some View{
-        HStack(spacing:0){
-            Button(action:{
-                
-            }){
-                Text("상세 정보")
-                    .font(.bold22)
-                    .foregroundStyle(Color.black)
-            }.frame(maxWidth: .infinity, minHeight: 35)
+    private var movieTabHeader: some View {
+        HStack(spacing: 0) {
+            Button(action: {
+                withAnimation(.easeInOut) {
+                    selectedTab = .info
+                }
+            }) {
+                VStack(spacing: 4) {
+                    Text("상세 정보")
+                        .font(.bold22)
+                        .foregroundStyle(selectedTab == .info ? Color.black : Color("gray03"))
+                    
+                    Rectangle()
+                        .fill(selectedTab == .info ? Color.black : Color.clear)
+                        .frame(height: 2)
+                }
+                .frame(maxWidth: .infinity, minHeight: 35)
+            }
             
-            Button(action:{
-                
-            }){
-                Text("실관람평")
-                    .font(.bold22)
-                    .foregroundStyle(Color("gray03"))
-            }.frame(maxWidth: .infinity, minHeight: 35)
-            
-        }.frame(maxWidth:.infinity, minHeight: 35)
+            Button(action: {
+                withAnimation(.easeInOut) {
+                    selectedTab = .reviews
+                }
+            }) {
+                VStack(spacing: 4) {
+                    Text("실관람평")
+                        .font(.bold22)
+                        .foregroundStyle(selectedTab == .reviews ? Color.black : Color("gray03"))
+                    
+                    Rectangle()
+                        .fill(selectedTab == .reviews ? Color.black : Color.clear)
+                        .frame(height: 2)
+                }
+                .frame(maxWidth: .infinity, minHeight: 35)
+            }
+        }
+        .frame(maxWidth: .infinity, minHeight: 35)
     }
+
+
     
     private var movieSubInfo: some View{
         HStack(spacing:0){
@@ -120,6 +149,19 @@ struct MovieDetail:View {
             
         }.frame(maxWidth:.infinity, maxHeight: 120)
     }
+    
+    private var reviewSection: some View {
+        VStack{
+            Text("등록된 관람평이 없어요")
+                .font(.semiBold18)
+        }
+        .frame(maxWidth:.infinity, minHeight: 141)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color("purple02"), lineWidth: 1)
+        )
+    }
+
 }
 
 #Preview {

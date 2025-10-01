@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum MovieDetailTab: String, CaseIterable {
+    case info = "상세 정보"
+    case reviews = "실관람평"
+}

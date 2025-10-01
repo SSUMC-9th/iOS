@@ -12,25 +12,27 @@ struct HomeView: View {
     @State private var viewModel: MegaMovieViewModel = .init()
     
     var body: some View {
-        ScrollView{
-            VStack(spacing:0){
-                megaLogo
-                    .padding(.bottom, 8)
-                topSegment4
-                    .padding(.bottom, 9)
-                topSegment2
-                    .padding(.bottom, 25)
-                moviePoster
-                    .padding(.bottom, 37)
-                moviePid
-                    .padding(.bottom, 5.5)
-                moviePidImg
-                    .padding(.trailing, 16)
+        NavigationStack{
+            ScrollView{
+                VStack(spacing:0){
+                    megaLogo
+                        .padding(.bottom, 8)
+                    topSegment4
+                        .padding(.bottom, 9)
+                    topSegment2
+                        .padding(.bottom, 25)
+                    moviePoster
+                        .padding(.bottom, 37)
+                    moviePid
+                        .padding(.bottom, 5.5)
+                    moviePidImg
+                        .padding(.trailing, 16)
+                    
+                }.padding(.leading, 16)
                 
-            }.padding(.leading, 16)
-            
-        }.frame(maxWidth: .infinity, maxHeight:.infinity)
-        .background(Color.white)
+            }.frame(maxWidth: .infinity, maxHeight:.infinity)
+                .background(Color.white)
+        }
     }
     
     private var megaLogo: some View {
