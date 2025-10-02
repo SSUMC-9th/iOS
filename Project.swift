@@ -14,6 +14,17 @@ let project = Project(
                         "UIColorName": "",
                         "UIImageName": "",
                     ],
+		"UIAppFonts": [
+			"Pretendard-Black.otf",
+			"Pretendard-Bold.otf",
+			"Pretendard-ExtraBold.otf",
+			"Pretendard-ExtraLight.otf",
+			"Pretendard-Light.otf",	
+			"Pretendard-Medium.otf",
+                        "Pretendard-Regular.otf",
+			"Pretendard-SemiBold.otf",
+                        "Pretendard-Thin.ttf"
+                    ],
                 ]
             ),
             buildableFolders: [

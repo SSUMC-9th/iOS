@@ -86,6 +86,7 @@ struct MovieDetail:View {
                 .lineSpacing(4)
                 .padding(.top, 10)
                 .fixedSize(horizontal: false, vertical: true)
+                .padding(.horizontal, 16)
         }
     }
     private var movieTabHeader: some View {

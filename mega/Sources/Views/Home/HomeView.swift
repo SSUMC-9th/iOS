@@ -27,6 +27,8 @@ struct HomeView: View {
                         .padding(.bottom, 5.5)
                     moviePidImg
                         .padding(.trailing, 16)
+                        .padding(.bottom, 44)
+                    bottomSumInfo
                     
                 }.padding(.leading, 16)
                 
@@ -135,6 +137,37 @@ struct HomeView: View {
                 .aspectRatio(contentMode: .fit)
                 
         }
+    }
+    
+    private var bottomSumInfo:some View{
+        VStack{
+            HStack(spacing:0){
+                Image("bottomSumMonoImg")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height:100)
+                
+                VStack(spacing:0){
+                    Text("9월, 메가박스의 영화들(1), 명작들의 재개봉")
+                        .font(.semiBold18)
+                        .padding(.bottom, 25)
+                    
+                    Text("<모노노케 히메>,<퍼펙트 블루>")
+                        .font(.semiBold13)
+                        .foregroundStyle(Color("gray03"))
+                        .frame(alignment: .leading)
+                }.padding(.leading, 23)
+                
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            
+            HStack{
+                
+            }
+            .frame(maxWidth: .infinity, minHeight:100)
+        }
+        .frame(maxWidth:.infinity, minHeight:239)
     }
 }
 
