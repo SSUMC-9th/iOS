@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct UserInfoManage: View {
+    @Environment(\.dismiss) private var dismiss
     @AppStorage("userId") private var userId: String = "kmin817"
     @AppStorage("userName") private var storedUserName: String = ""
     @State private var tempName: String = ""
@@ -25,6 +26,7 @@ struct UserInfoManage: View {
                 .padding(.horizontal, 14)
             
         }
+        .navigationBarHidden(true)
         .onAppear {
                 tempName = storedUserName
             }
@@ -35,19 +37,19 @@ struct UserInfoManage: View {
     private var topNav: some View {
         HStack{
             Button(action:{
-                //  뒤로 가는 액션 구현
+                dismiss()
             }){
                 Image(systemName: "arrow.left")
                     .resizable()
                     .frame(width:26, height:22)
-                    .foregroundColor(Color.black)
+                    .foregroundStyle(Color.black)
             }.frame(width: 30, height: 44, alignment: .center)
             
             Spacer()
             
             Text("회원정보 관리")
                 .font(.system(size:16, weight:.medium))
-                .foregroundColor(.black)
+                .foregroundStyle(.black)
             
             Spacer()
             
@@ -62,13 +64,13 @@ struct UserInfoManage: View {
         VStack(alignment: .leading){
             Text("기본정보")
                 .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.black)
+                .foregroundStyle(.black)
                 .padding(.bottom, 4)
             
             // 아이디
             Text(userId)
                 .font(.system(size: 14))
-                .foregroundColor(Color.black)
+                .foregroundStyle(Color.black)
                 .padding(.top, 8)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.white)
@@ -86,7 +88,7 @@ struct UserInfoManage: View {
                     Text("변경")
                         .frame(width:38, height:20)
                         .font(.system(size:12, weight:.bold))
-                        .foregroundColor(Color("gray03"))
+                        .foregroundStyle(Color("gray03"))
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
                         .overlay(
@@ -100,12 +102,6 @@ struct UserInfoManage: View {
         }
     }
     
-}
-
-
-
-#Preview {
-    UserInfoManage()
 }
 
 #Preview("iPhone 11") {

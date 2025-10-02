@@ -11,10 +11,10 @@ import SwiftUI
 struct UserInfo: View {
     @AppStorage("userID") var userID: String = ""
     @AppStorage("userName") private var userName: String = ""
+    @State private var isShowingManage: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            
             profileHeader
                 .padding(.horizontal, 14)
                 .padding(.top, 59)
@@ -36,57 +36,59 @@ struct UserInfo: View {
                 .padding(.top, 33)
             
             Spacer()
-            
+        }
+        .navigationDestination(isPresented: $isShowingManage) {
+            UserInfoManage()
         }
     }
     
     private var profileHeader: some View {
-        HStack(spacing: 0) {
-            Text("이*원님")
-                .frame(width: 74, height:36)
-                .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.black)
-//            Text("\(userName)님")
-//                .frame(width: 74, height:36)
-//                .font(.system(size: 24, weight: .bold))
-//                .foregroundColor(.black)
-            
-            Text("WELCOME")
-                .frame(width: 81, height:25 )
-                .font(.system(size: 14, weight: .bold))
-                .foregroundColor(.white)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color(hex: "#47CDD2"))
-                .cornerRadius(6)
-                .padding(.leading, 5)
-            
-            Spacer()
-            
-            Button(action:{
-                print("회원정보 버튼 눌림")
-            }){
-                Text("회원정보")
-                    .frame(width:72, height: 28)
+            HStack(spacing: 0) {
+                Text("이*원님")
+                    .frame(width: 74, height:36)
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundStyle(.black)
+                //            Text("\(userName)님")
+                //                .frame(width: 74, height:36)
+                //                .font(.system(size: 24, weight: .bold))
+                //                .foregroundStyle(.black)
+                
+                Text("WELCOME")
+                    .frame(width: 81, height:25 )
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 4)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(Color("gray07"))
-                    .cornerRadius(16)
+                    .background(Color(hex: "#47CDD2"))
+                    .cornerRadius(6)
+                    .padding(.leading, 5)
+                
+                Spacer()
+                
+                Button(action:{
+                    isShowingManage = true 
+                }){
+                    Text("회원정보")
+                        .frame(width:72, height: 28)
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 4)
+                        .background(Color("gray07"))
+                        .cornerRadius(16)
+                }
             }
-        }
     }
     
     private var membershipPointSection: some View {
         HStack(spacing: 0) {
             Text("멤버십 포인트")
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Color("gray04"))
+                .foregroundStyle(Color("gray04"))
             
             Text("500P")
                 .font(.system(size: 14, weight: .regular))
-                .foregroundColor(.black)
+                .foregroundStyle(.black)
                 .padding(.leading, 9)
         }
     }
@@ -95,10 +97,10 @@ struct UserInfo: View {
         HStack {
             Text("클럽 멤버십")
                 .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
             
             Image(systemName: "chevron.right")
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
             
             Spacer()
         }
@@ -171,7 +173,7 @@ struct UserInfo: View {
     private var verticalDivider: some View {
         Rectangle()
             .frame(width: 1, height: 44)
-            .foregroundColor(Color("gray02"))
+            .foregroundStyle(Color("gray02"))
             .padding(.trailing, 23)
             .padding(.leading, 33)
     }
@@ -216,10 +218,6 @@ struct UserInfo: View {
             .frame(maxWidth: .infinity)
         }
     }
-}
-
-#Preview{
-    UserInfo()
 }
 
 #Preview("iPhone 11") {
