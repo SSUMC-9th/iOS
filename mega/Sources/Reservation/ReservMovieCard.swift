@@ -9,20 +9,20 @@ import SwiftUI
 
 struct ReservMovieCard: View {
     let movieInfo:ReservModel
-    
-    init(movieInfo:ReservModel){
-        self.movieInfo = movieInfo
-    }
+    var isSelected: Bool=false
     
     var body: some View {
         VStack{
             movieInfo.movieImage
                 .resizable()
                 .aspectRatio(contentMode:.fit)
-                .frame(width:148, height:212)
+                .frame(width:62, height:89)
                 .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(isSelected ? Color("purple04") : Color.clear, lineWidth:2))
             
-        }.frame(width:148, height:318)
+        }.frame(width:62, height:89)
         
     }
 
