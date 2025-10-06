@@ -18,7 +18,7 @@ struct MegaNavigation: View {
                 HomeView()
             }
             Tab("바로예매", systemImage:"video"){
-                
+                ReservView()
             }
             Tab("모바일 오더", systemImage: "popcorn"){
                 

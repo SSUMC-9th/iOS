@@ -96,12 +96,12 @@ struct LoginView: View {
 }
 
 #Preview("iPhone 11") {
-    @State var previewIsLoggedIn: Bool = false
+    @Previewable @State var previewIsLoggedIn: Bool = false
     return LoginView(isLoggedIn: $previewIsLoggedIn)
 }
 
 #Preview("iPhone 16 Pro") {
-    @State var previewIsLoggedIn: Bool = false
+    @Previewable @State var previewIsLoggedIn: Bool = false
     return LoginView(isLoggedIn: $previewIsLoggedIn)
 }
 
