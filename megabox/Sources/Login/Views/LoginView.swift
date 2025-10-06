@@ -9,14 +9,13 @@ import SwiftUI
 
 
 struct LoginView: View {
-    var router: NavigationRouter   // 라우터 받기
+    @EnvironmentObject var router: NavigationRouter
     @StateObject var loginViewModel: LoginViewModel
     @AppStorage("savedId") private var savedId: String = ""
     @AppStorage("savedPwd") private var savedPwd: String = ""
     @AppStorage("savedName") private var savedName: String = ""
     
-    init(router: NavigationRouter) {
-        self.router = router
+    init() {
         self._loginViewModel = .init(wrappedValue: LoginViewModel(loginModel: LoginModel(id:"", pwd: "")))
     }
     
@@ -87,6 +86,7 @@ struct LoginView: View {
             savedId = loginViewModel.loginModel.id
             savedPwd = loginViewModel.loginModel.pwd
             savedName = loginViewModel.loginModel.id + "_init"
+            router.push(.mainTab)
             
 //            print("저장 완료 - id:\(savedId), name:\(savedName)")
         }) {
@@ -136,13 +136,13 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(router: NavigationRouter())
+    LoginView()
 }
 
 #Preview("iPhone 11") {
-    LoginView(router: NavigationRouter())
+    LoginView()
 }
 
 #Preview("iPhone 16 Pro Max") {
-    LoginView(router: NavigationRouter())
+    LoginView()
 }

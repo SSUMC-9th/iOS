@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @AppStorage("savedName") private var savedName: String = ""
+    @EnvironmentObject var router: NavigationRouter   // 추가
+
     
     var body: some View {
         
@@ -51,7 +53,9 @@ struct ProfileView: View {
                 .background(Color("tag"))
                 .cornerRadius(4)
             Spacer()
-            Button(action: {}) {
+            Button(action: {
+                router.push(.memberInfo)
+            }) {
                 Text("회원정보")
                     .font(.semiBold14)
                     .foregroundStyle(Color.white)
