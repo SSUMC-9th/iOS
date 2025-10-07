@@ -10,15 +10,22 @@ import SwiftUI
 
 struct ReservView: View {
     @StateObject private var viewModel = ReservViewModel()
+    @State private var isShowingMovieSearch = false
     
     var body : some View {
         ZStack(alignment: .top){
-            Color("purple04")
-                .ignoresSafeArea()
+            VStack(spacing: 0) {
+                Color("purple04")
+                    .frame(height: 120)             // 상단 헤더 영역을 채울 보라색
+                Color.white                        // 나머지 영역 채우는 색
+            }.ignoresSafeArea()
+            
             ScrollView{
                 VStack(spacing: 0){
-                    topHeader
-                        .padding(.bottom, 12)
+                    Spacer()
+                        .frame(height: 56)
+//                    topHeader
+//                        .padding(.bottom, 12)
                     movieName
                         .padding(.horizontal, 16)
                         .padding(.bottom, 20)
@@ -30,6 +37,7 @@ struct ReservView: View {
                         .padding(.bottom, 29)
                     dateSelection
                         .padding(.horizontal, 16)
+                        .padding(.bottom, 49)
                     showtimesView
                         .padding(.horizontal, 16)
                     Spacer()
@@ -37,7 +45,7 @@ struct ReservView: View {
                 }
             }
             .background(Color.white)
-            .padding(.top, 21)
+            topHeader
         }
     }
     
@@ -45,7 +53,7 @@ struct ReservView: View {
         HStack{
             Text("영화별 예매")
                 .font(.headline)
-                .foregroundColor(.white)
+                .foregroundStyle(Color.white)
                 .frame(height:30)
         }.frame(maxWidth:.infinity)
         .padding(.bottom, 10)
@@ -59,7 +67,7 @@ struct ReservView: View {
                 .foregroundStyle(Color.white)
                 .frame(width:26, height:24)
                 .background(Color(hex: "FF8000"))
-                .cornerRadius(4)
+                .clipShape(RoundedRectangle(cornerRadius: 4))
                 .padding(.trailing, 37)
             
             Text(viewModel.selectedMovie?.movieName ?? "영화 선택")
@@ -67,7 +75,7 @@ struct ReservView: View {
                 .frame(width: 238, height: 24, alignment: .leading)
             
             Button(action:{
-                
+                self.isShowingMovieSearch = true
             }){
                 Text("전체영화")
                     .font(.semiBold14)
@@ -76,10 +84,13 @@ struct ReservView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color("gray02"), lineWidth: 1)
-                    )
+                )
             }
-            
         }.frame(maxWidth: .infinity)
+        .sheet(isPresented: $isShowingMovieSearch) {
+            MovieSearchView(selectedMovie: $viewModel.selectedMovie)
+                .presentationDragIndicator(.visible)
+        }
     }
     
     private var moviePoster: some View{
@@ -124,7 +135,7 @@ struct ReservView: View {
                                 ? Color("purple04")
                                 : Color("gray01")
                         )
-                        .cornerRadius(15)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
                 .disabled(!viewModel.isTheaterButtonEnabled)
             }
@@ -159,7 +170,7 @@ struct ReservView: View {
                         ? Color("purple04")
                         : Color.white
                     )
-                    .cornerRadius(15)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
                     .onTapGesture {
                         if viewModel.isDateButtonEnabled {
                             viewModel.selectedDate = date
@@ -171,7 +182,7 @@ struct ReservView: View {
         }
 
     private var showtimesView: some View {
-        VStack(alignment: .leading, spacing: 24) {
+        VStack(alignment: .leading, spacing: 29) {
             if viewModel.isShowtimesVisible {
                 if !(viewModel.selectedDate?.isSameDay(as: viewModel.dates.first ?? Date()) ?? false) {
                     NoShowtimesView()
@@ -199,8 +210,8 @@ struct ReservView: View {
     private struct NoShowtimesView: View {
         var body: some View {
             Text("선택한 극장에 상용시간표가 없습니다")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(Color("gray04"))
+                .font(.bold18)
+                .foregroundStyle(Color("gray04"))
                 .frame(maxWidth: .infinity, minHeight: 150)
         }
     }

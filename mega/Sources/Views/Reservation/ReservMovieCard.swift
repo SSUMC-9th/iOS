@@ -17,7 +17,7 @@ struct ReservMovieCard: View {
                 .resizable()
                 .aspectRatio(contentMode:.fit)
                 .frame(width:62, height:89)
-                .cornerRadius(10)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(isSelected ? Color("purple04") : Color.clear, lineWidth:2))

@@ -81,7 +81,7 @@ struct HomeView: View {
                     
             }
             .background(Color("gray08"))
-            .cornerRadius(19)
+            .clipShape(RoundedRectangle(cornerRadius: 19))
             
             Button(action: {
                 
@@ -92,7 +92,7 @@ struct HomeView: View {
                     .foregroundStyle(Color("gray04"))
             }
             .background(Color("gray02"))
-            .cornerRadius(19)
+            .clipShape(RoundedRectangle(cornerRadius: 19))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

@@ -54,7 +54,7 @@ struct LoginView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 15)}
                 .background(Color("purple03"))
-                .cornerRadius(10)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal, 16)
                 .padding(.top, 37.5)
             

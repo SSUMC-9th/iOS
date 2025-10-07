@@ -60,7 +60,7 @@ struct UserInfo: View {
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
                     .background(Color(hex: "#47CDD2"))
-                    .cornerRadius(6)
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
                     .padding(.leading, 5)
                 
                 Spacer()
@@ -75,7 +75,7 @@ struct UserInfo: View {
                         .padding(.horizontal, 4)
                         .padding(.vertical, 4)
                         .background(Color("gray07"))
-                        .cornerRadius(16)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
             }
     }
@@ -111,7 +111,7 @@ struct UserInfo: View {
                            startPoint: .leading,
                            endPoint: .trailing)
         )
-        .cornerRadius(8)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
     private var statusInfoSection: some View {
