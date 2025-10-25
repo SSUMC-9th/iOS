@@ -27,6 +27,8 @@ struct HomeView: View {
                         .padding(.bottom, 5.5)
                     moviePidImg
                         .padding(.trailing, 16)
+                        .padding(.bottom, 44)
+                    bottomSumInfo
                     
                 }.padding(.leading, 16)
                 
@@ -79,7 +81,7 @@ struct HomeView: View {
                     
             }
             .background(Color("gray08"))
-            .cornerRadius(19)
+            .clipShape(RoundedRectangle(cornerRadius: 19))
             
             Button(action: {
                 
@@ -90,7 +92,7 @@ struct HomeView: View {
                     .foregroundStyle(Color("gray04"))
             }
             .background(Color("gray02"))
-            .cornerRadius(19)
+            .clipShape(RoundedRectangle(cornerRadius: 19))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -136,10 +138,59 @@ struct HomeView: View {
                 
         }
     }
+    
+    private var bottomSumInfo:some View{
+        VStack(spacing:0){
+            HStack(spacing:0){
+                Image("bottomSumMonoImg")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height:100)
+                
+                VStack(spacing:0){
+                    Text("9월, 메가박스의 영화들(1), 명작들의 재개봉")
+                        .font(.semiBold18)
+                        .padding(.bottom, 25)
+                    
+                    Text("<모노노케 히메>,<퍼펙트 블루>")
+                        .font(.semiBold13)
+                        .foregroundStyle(Color("gray03"))
+                        .frame(alignment: .leading)
+                }.padding(.leading, 23)
+                
+                Spacer()
+            }
+            .padding(.bottom, 39)
+            .frame(maxWidth: .infinity)
+            
+            HStack{
+                Image("bottomSumFaceImg")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height:100)
+                
+                VStack(spacing:0){
+                    Text("메가박스 오리지널 티겟 Re.37 <얼굴>")
+                        .font(.semiBold18)
+                        .padding(.bottom, 25)
+                    
+                    Text("<모노노케 히메>,<퍼펙트 블루>")
+                        .font(.semiBold13)
+                        .foregroundStyle(Color("gray03"))
+                        .frame(alignment: .leading)
+                }.padding(.leading, 23)
+                
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, minHeight:100)
+        }
+        .frame(maxWidth:.infinity, minHeight:239)
+    }
 }
 
 #Preview("iPhone 11") {
     HomeView()
+
 }
 
 #Preview("iPhone 16 Pro") {

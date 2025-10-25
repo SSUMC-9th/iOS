@@ -54,7 +54,7 @@ struct LoginView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 15)}
                 .background(Color("purple03"))
-                .cornerRadius(10)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal, 16)
                 .padding(.top, 37.5)
             
@@ -96,12 +96,12 @@ struct LoginView: View {
 }
 
 #Preview("iPhone 11") {
-    @State var previewIsLoggedIn: Bool = false
+    @Previewable @State var previewIsLoggedIn: Bool = false
     return LoginView(isLoggedIn: $previewIsLoggedIn)
 }
 
 #Preview("iPhone 16 Pro") {
-    @State var previewIsLoggedIn: Bool = false
+    @Previewable @State var previewIsLoggedIn: Bool = false
     return LoginView(isLoggedIn: $previewIsLoggedIn)
 }
 
