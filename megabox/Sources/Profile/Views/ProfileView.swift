@@ -33,8 +33,29 @@ struct ProfileView: View {
                     .padding(.top, 33)
                 
                 Spacer()   // 아래는 남는 공간 차지
+                Button("테스트용 로그아웃") {
+                    KeychainHelper.shared.delete(account: "savedId")
+                    KeychainHelper.shared.delete(account: "savedPwd")
+                    KeychainHelper.shared.delete(account: "savedName")
+                    print("🗑️ Keychain 삭제 완료!")
+                    router.reset()  // 네비게이션 스택 초기화
+                    router.push(.login)
+                }
+                .foregroundColor(.red)
+                .padding(.top, 20)
             }
             .padding(.horizontal, 16)
+            
+            
+        }
+        .onAppear {
+            if let name = KeychainHelper.shared.read(forKey: "savedName") {
+                savedName = name
+                print("ProfileView 갱신 : \(name)")
+            } else {
+                savedName = ""
+                print("Keychain에서 이름 없음")
+            }
         }
     }
     

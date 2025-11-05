@@ -32,6 +32,8 @@ struct MemberInfoView: View {
             }
             .padding(.horizontal, 16)
         }.onAppear {
+            savedId = KeychainHelper.shared.read(forKey: "savedId") ?? ""
+            savedName = KeychainHelper.shared.read(forKey: "savedName") ?? ""
             tempName = savedName
         }
     }

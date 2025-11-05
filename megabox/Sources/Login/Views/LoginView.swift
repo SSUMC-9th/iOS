@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import KakaoSDKUser
+import KakaoSDKAuth
 
 
 struct LoginView: View {
@@ -83,9 +85,16 @@ struct LoginView: View {
         Button(action: {
 //            print("현재 입력된 아이디:", loginViewModel.loginModel.id)
 //            print("현재 입력된 비번:", loginViewModel.loginModel.pwd)
-            savedId = loginViewModel.loginModel.id
-            savedPwd = loginViewModel.loginModel.pwd
-            savedName = loginViewModel.loginModel.id + "_init"
+
+            let id = loginViewModel.loginModel.id
+            let pwd = loginViewModel.loginModel.pwd
+            let name = id + "_init"
+
+            // ✅ Keychain 저장
+            KeychainHelper.shared.save(id, forKey: "savedId")
+            KeychainHelper.shared.save(pwd, forKey: "savedPwd")
+            KeychainHelper.shared.save(name, forKey: "savedName")
+
             router.push(.mainTab)
             
 //            print("저장 완료 - id:\(savedId), name:\(savedName)")
@@ -114,7 +123,10 @@ struct LoginView: View {
             
             Spacer()
             
-            Button(action: {}) {
+            Button(action: {
+                loginViewModel.loginWithKakao(router: router)
+
+            }) {
                 Image("kakao")
             }
             
