@@ -11,3 +11,8 @@ enum KakaoKeys {
     static var redirectURI: String { "\(redirectScheme)://oauth" }
 }
 
+enum TMDBKeys {
+    static let bearer: String =
+        Bundle.main.object(forInfoDictionaryKey: "TMDB_KEY") as? String ?? ""
+}
+
