@@ -16,7 +16,7 @@ DerivedData/
 *.log
 
 # Test 결과물
-*.plist
+# *.plist
 *.gcda
 
 # CocoaPods
