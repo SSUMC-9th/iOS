@@ -1,93 +1,89 @@
-//
-//  UserInfoManage.swift
-//  mega
-//
-//  Created by 이경민 on 9/21/25.
-//
-
 import Foundation
 import SwiftUI
 
 struct UserInfoManage: View {
     @Environment(\.dismiss) private var dismiss
-    @AppStorage("userId") private var userId: String = "kmin817"
-    @AppStorage("userName") private var storedUserName: String = ""
+    @EnvironmentObject var session: UserSession
+
+    @State private var userId: String = ""
     @State private var tempName: String = ""
-    
+
     var body: some View {
-        VStack{
-            
+        VStack {
             topNav
                 .padding(.horizontal, 14)
-            
-            Spacer().frame(height:53)
-            
+
+            Spacer().frame(height: 53)
+
             mainContent
                 .padding(.horizontal, 14)
-            
         }
         .navigationBarHidden(true)
         .onAppear {
-                tempName = storedUserName
-            }
+            // 키체인에서 현재 값 로드
+            userId = KeychainService.shared.read(service: KCKey.service, account: KCKey.userID) ?? ""
+            tempName = KeychainService.shared.read(service: KCKey.service, account: KCKey.userName)
+                ?? session.displayName
+        }
         Spacer()
-        
     }
-    
+
     private var topNav: some View {
-        HStack{
-            Button(action:{
-                dismiss()
-            }){
+        HStack {
+            Button(action: { dismiss() }) {
                 Image(systemName: "arrow.left")
                     .resizable()
-                    .frame(width:26, height:22)
+                    .frame(width: 26, height: 22)
                     .foregroundStyle(Color.black)
-            }.frame(width: 30, height: 44, alignment: .center)
-            
+            }
+            .frame(width: 30, height: 44, alignment: .center)
+
             Spacer()
-            
+
             Text("회원정보 관리")
-                .font(.system(size:16, weight:.medium))
+                .font(.system(size: 16, weight: .medium))
                 .foregroundStyle(.black)
-            
+
             Spacer()
-            
+
             Color.clear.frame(width: 30, height: 44)
         }
         .padding(.horizontal)
-        .frame(height:44)
-        
+        .frame(height: 44)
     }
-    
+
     private var mainContent: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             Text("기본정보")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundStyle(.black)
                 .padding(.bottom, 4)
-            
-            // 아이디
+
             Text(userId)
                 .font(.system(size: 14))
                 .foregroundStyle(Color.black)
                 .padding(.top, 8)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.white)
-            
+
             Divider().padding(.bottom, 24)
-            
-            HStack{
+
+            HStack {
                 TextField("이곳에 입력하세요", text: $tempName)
-                    .font(.system(size:14))
+                    .font(.system(size: 14))
                     .padding(.top, 8)
-                
-                Button(action:{
-                    storedUserName = tempName
-                }){
+
+                Button(action: {
+                    _ = KeychainService.shared.save(
+                        service: KCKey.service,
+                        account: KCKey.userName,
+                        value: tempName
+                    )
+                    session.displayName = tempName
+                }) {
                     Text("변경")
-                        .frame(width:38, height:20)
-                        .font(.system(size:12, weight:.bold))
+                        .frame(width: 38, height: 20)
+                        .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(Color("gray03"))
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
@@ -96,18 +92,15 @@ struct UserInfoManage: View {
                                 .stroke(Color("gray03"), lineWidth: 1)
                         )
                 }
+                .disabled(tempName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
-            
+
             Divider()
         }
     }
-    
-}
-
-#Preview("iPhone 11") {
-    UserInfoManage()
 }
 
 #Preview("iPhone 16 Pro") {
     UserInfoManage()
+        .environmentObject(UserSession.shared)
 }
