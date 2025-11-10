@@ -7,7 +7,7 @@
 *.xcuserstate
 *.xcscmblueprint
 *.xccheckout
-*.xcworkspace
+# *.xcworkspace
 xcuserdata/
 
 # 빌드 디렉토리
@@ -35,7 +35,6 @@ Carthage/Checkouts/
 #
 # Swift Package Manager 관련 파일 무시
 .swiftpm/
-Package.resolved
 .build/
 
 # Fastlane
@@ -57,4 +56,4 @@ fastlane/test_output/
 /.tuist/
 
 
-mega/Sources/Secret.xcconfig
+**/Secret.xcconfig
