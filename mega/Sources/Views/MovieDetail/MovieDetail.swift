@@ -7,80 +7,96 @@
 
 import Foundation
 import SwiftUI
+import Kingfisher
 
-struct MovieDetail:View {
+struct MovieDetail: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selectedTab: MovieDetailTab = .info
-    var menu = ["상세 정보", "실관람평"]
-    
-    let movie:MegaMovieModel
-    private let movieDescription: String = "최고가 되지 못한 전설 vs 최고가 되고 싶은 루키\n\n한때 주목받는 유망주였지만 끔찍한 사고로 F1에서 우승하지 못하고\n한순간에 추락한 드라이버 '손; 헤이스'(브래드 피트).\n그의 오랜 동료인 '루벤 세르반테스'(하비에르 바르뎀)에게 레이싱 복귀를 제안받으며 최하위 팀인 APXGP에 합류한다."
-    
+
+    let card: MovieCardModel
+
+    @State private var vm = MovieDetailViewModel()
+
     var body: some View {
-        VStack(spacing: 0){
+        VStack(spacing: 0) {
             topNavigationBar
                 .padding(.horizontal, 16)
+
             movieSummarize
                 .padding(.bottom, 35)
+
             movieTabHeader
                 .padding(.bottom, 17)
-            
+
             if selectedTab == .info {
                 movieSubInfo
                     .padding(.horizontal, 16)
-            } else if selectedTab == .reviews {
+            } else {
                 reviewSection
                     .padding(.horizontal, 16)
             }
-            
+
             Spacer()
-        }.frame(maxWidth:.infinity, maxHeight: .infinity)
-        .navigationTitle(movie.movieName)
-        .toolbar(.hidden, for:.navigationBar)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationTitle(card.title)
+        .toolbar(.hidden, for: .navigationBar)
         .animation(.easeInOut, value: selectedTab)
+        .task { await vm.load(movieId: card.id) }
     }
-    
+
     private var topNavigationBar: some View {
         HStack {
-            Button(action: {
-                dismiss()
-            }) {
+            Button { dismiss() } label: {
                 Image(systemName: "arrow.left")
                     .resizable()
                     .frame(width: 24, height: 24)
-                    .foregroundStyle(Color.black)
-                    .aspectRatio(contentMode: .fit)
+                    .foregroundStyle(.black)
             }
             Spacer()
-            Text(movie.movieName)
+            Text(card.title)
                 .font(.PretendardRegular16)
                 .foregroundColor(.black)
-            
-            Spacer().frame(width:150)
+            Spacer()
+                .frame(width: 150)
         }
-        .frame(maxWidth:.infinity, minHeight: 54)
+        .frame(maxWidth: .infinity, minHeight: 54)
     }
-    
-    private var movieSummarize: some View{
-        VStack{
-            Image("movieDetailPoster")
+
+    private var movieSummarize: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            KFImage(vm.detail?.backdropURL)
+                .placeholder {
+                    ZStack {
+                        Rectangle().fill(Color.gray.opacity(0.1))
+                        ProgressView()
+                    }
+                }
+                .retry(maxCount: 2, interval: .seconds(1))
+                .cancelOnDisappear(true)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: .infinity)
-            HStack{
-                Text(movie.movieName)
+
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(card.title)
                     .font(.bold24)
-            }.frame(maxWidth: .infinity)
-                .padding(.horizontal, 16)
-            
-            HStack{
-                Text(movie.movieEngName)
-                    .font(.semiBold14)
-                    .foregroundStyle(Color("gray03"))
-            }.frame(maxWidth: .infinity)
-                .padding(.horizontal, 16)
-            
-            Text(movieDescription)
+
+                HStack(spacing: 6) {
+                    Text(vm.detail?.title ?? "")
+                        .font(.semiBold14)
+                        .foregroundStyle(Color("gray03"))
+                    if let date = vm.detail?.releaseDate {
+                        Text("· \(date)")
+                            .font(.semiBold14)
+                            .foregroundStyle(Color("gray03"))
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+
+            Text(vm.detail?.overview ?? "")
                 .font(.PretendardRegular16)
                 .foregroundStyle(Color("gray03"))
                 .lineSpacing(4)
@@ -89,38 +105,26 @@ struct MovieDetail:View {
                 .padding(.horizontal, 16)
         }
     }
+
     private var movieTabHeader: some View {
         HStack(spacing: 0) {
-            Button(action: {
-                withAnimation(.easeInOut) {
-                    selectedTab = .info
-                }
-            }) {
+            Button {
+                withAnimation(.easeInOut) { selectedTab = .info }
+            } label: {
                 VStack(spacing: 4) {
-                    Text("상세 정보")
-                        .font(.bold22)
+                    Text("상세 정보").font(.bold22)
                         .foregroundStyle(selectedTab == .info ? Color.black : Color("gray03"))
-                    
-                    Rectangle()
-                        .fill(selectedTab == .info ? Color.black : Color.clear)
-                        .frame(height: 2)
+                    Rectangle().fill(selectedTab == .info ? Color.black : .clear).frame(height: 2)
                 }
                 .frame(maxWidth: .infinity, minHeight: 35)
             }
-            
-            Button(action: {
-                withAnimation(.easeInOut) {
-                    selectedTab = .reviews
-                }
-            }) {
+            Button {
+                withAnimation(.easeInOut) { selectedTab = .reviews }
+            } label: {
                 VStack(spacing: 4) {
-                    Text("실관람평")
-                        .font(.bold22)
+                    Text("실관람평").font(.bold22)
                         .foregroundStyle(selectedTab == .reviews ? Color.black : Color("gray03"))
-                    
-                    Rectangle()
-                        .fill(selectedTab == .reviews ? Color.black : Color.clear)
-                        .frame(height: 2)
+                    Rectangle().fill(selectedTab == .reviews ? Color.black : .clear).frame(height: 2)
                 }
                 .frame(maxWidth: .infinity, minHeight: 35)
             }
@@ -128,47 +132,36 @@ struct MovieDetail:View {
         .frame(maxWidth: .infinity, minHeight: 35)
     }
 
-
-    
-    private var movieSubInfo: some View{
-        HStack(spacing:0){
-            movie.movieImage
+    private var movieSubInfo: some View {
+        HStack(spacing: 0) {
+            KFImage(card.posterURL)
+                .placeholder { ProgressView() }
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height:120)
-            
-            VStack(alignment: .leading){
-                Text("12세 이상 관람")
+                .frame(height: 120)
+                .cornerRadius(6)
+
+            VStack(alignment: .leading) {
+                Text("\(vm.detail?.ageRating ?? 12)세 이상 관람")
                     .font(.semiBold13)
                     .padding(.bottom, 9)
-                
-                Text("123123")
+
+                Text("평점 \(vm.detail?.voteAverage ?? 0, specifier: "%.1f")")
                     .font(.semiBold13)
                 Spacer()
-            }.padding(.leading, 13)
+            }
+            .padding(.leading, 13)
+
             Spacer()
-            
-        }.frame(maxWidth:.infinity, maxHeight: 120)
-    }
-    
-    private var reviewSection: some View {
-        VStack{
-            Text("등록된 관람평이 없어요")
-                .font(.semiBold18)
         }
-        .frame(maxWidth:.infinity, minHeight: 141)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color("purple02"), lineWidth: 1)
-        )
+        .frame(maxWidth: .infinity, maxHeight: 120)
     }
 
-}
-
-#Preview("iPhone 11") {
-    MovieDetail(movie:MegaMovieModel(movieImage: Image("f1"), movieName: "F1 더 무비", movieEngName: "F1: The Movie", movieReserCount: "누적관객수 10만"))
-}
-
-#Preview("iPhone 16 Pro") {
-    MovieDetail(movie:MegaMovieModel(movieImage: Image("f1"), movieName: "F1 더 무비", movieEngName: "F1: The Movie", movieReserCount: "누적관객수 10만"))
+    private var reviewSection: some View {
+        VStack { Text("등록된 관람평이 없어요")
+            .font(.semiBold18) }
+            .frame(maxWidth: .infinity, minHeight: 141)
+            .overlay(RoundedRectangle(cornerRadius: 10)
+                .stroke(Color("purple02"), lineWidth: 1))
+    }
 }

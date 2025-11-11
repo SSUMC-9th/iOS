@@ -11,40 +11,17 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<array>
-		<string></string>
-	</array>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>kakao4975775bdaa7388dd27585e0c093de55</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>KAKAO_NATIVE_APP_KEY</key>
-	<string>4975775bdaa7388dd27585e0c093de55</string>
-	<key>KAKAO_REST_API_KEY</key>
-	<string>db609a8e61d9262a1c7cc2084f125f7c</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>kakaokompassauth</string>
-		<string>kakaolink</string>
-		<string>kakaoplus</string>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>TMDB_KEY</key>
-	<string>1ff8a4f0be8023f1566a0138c1637588</string>
+	<string>$(TMDB_KEY)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Black.otf</string>

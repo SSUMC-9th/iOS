@@ -1,7 +1,14 @@
 import ProjectDescription
 
+let debugConfig = Configuration.debug(name: "Debug", xcconfig: "mega/Sources/Secret.xcconfig")
+let releaseConfig = Configuration.release(name: "Release", xcconfig: "mega/Sources/Secret.xcconfig")
+
+let settings = Settings.settings(
+    configurations: [debugConfig, releaseConfig]
+)
+
 let project = Project(
-    name: "mega",
+    name: "mega", settings: settings,
     targets: [
         .target(
             name: "mega",
@@ -10,6 +17,7 @@ let project = Project(
             bundleId: "dev.tuist.mega",
             infoPlist: .extendingDefault(
                 with: [
+			"TMDB_KEY" : "$(TMDB_KEY)",
                     "UILaunchScreen": [
                         "UIColorName": "",
                         "UIImageName": "",
@@ -42,7 +50,10 @@ let project = Project(
             buildableFolders: [
                 "mega/Tests"
             ],
-            dependencies: [.target(name: "mega")]
+            dependencies: [
+		.target(name: "mega")
+
+		]
         ),
     ]
 )

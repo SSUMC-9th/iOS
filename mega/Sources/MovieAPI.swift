@@ -9,46 +9,69 @@ import Foundation
 import Moya
 
 enum MovieAPI {
-    case nowPlaying(language: String = "ko-KR", page: Int = 1, region: String = "KR")
+    case nowPlaying(MovieNowPlayingRequest)
+    case detail(id: Int, MovieDetailRequest)
+}
+
+struct MovieDetailRequest: Encodable {
+    let language: String
+    let region: String?
+
+    init(language: String = "ko-KR", region: String? = "KR") {
+        self.language = language
+        self.region = region
+    }
+
+    func asParameters() -> [String: Any] {
+        var p: [String: Any] = ["language": language]
+        if let region { p["region"] = region }
+        return p
+    }
 }
 
 extension MovieAPI: TargetType {
     var baseURL: URL { URL(string: "https://api.themoviedb.org/3")! }
-
+    
     var path: String {
         switch self {
         case .nowPlaying:
             return "/movie/now_playing"
+            
+        case .detail(let id, _):
+            return "/movie/\(id)"
         }
     }
-
+    
     var method: Moya.Method {
         switch self {
-        case .nowPlaying:
-            return .get
+        case .nowPlaying, .detail:
+        return .get
         }
     }
-
+    
     var task: Task {
         switch self {
-        case let .nowPlaying(language, page, region):
-            let params: [String: Any] = [
-                "language": language,
-                "page": page,
-                "region": region
-            ]
-            // GET 쿼리스트링
-            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+        case .nowPlaying(let req):
+            return .requestParameters(
+                parameters: req.asParameters(),
+                encoding: URLEncoding.queryString
+            )
+            
+        case .detail(_, let req):
+            return .requestParameters(parameters: req.asParameters(),
+                                      encoding: URLEncoding.queryString)
         }
     }
-
+    
+    
     var headers: [String : String]? {
-        [
+        guard TMDBKeys.bearer.isEmpty == false else { return ["Accept":"application/json"] }
+        return [
             "Authorization": "Bearer \(TMDBKeys.bearer)",
             "Accept": "application/json"
         ]
     }
-
+    
     var sampleData: Data {
         switch self {
         case .nowPlaying:
@@ -66,6 +89,21 @@ extension MovieAPI: TargetType {
             }
             """
             return Data(json.utf8)
+            
+        case .detail:
+                    let json = """
+                    {
+                      "id": 123,
+                      "title": "샘플 영화",
+                      "original_title": "Sample",
+                      "overview": "상세 응답 샘플",
+                      "release_date": "2025-11-01",
+                      "backdrop_path": "/backdrop.jpg",
+                      "poster_path": "/abc.jpg",
+                      "vote_average": 7.2
+                    }
+                    """
+                    return Data(json.utf8)
         }
     }
 }
