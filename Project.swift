@@ -8,13 +8,15 @@ let settings = Settings.settings(
 )
 
 let project = Project(
-    name: "mega", settings: settings,
+    name: "mega",
     targets: [
         .target(
             name: "mega",
             destinations: .iOS,
             product: .app,
             bundleId: "dev.tuist.mega",
+            
+            // 1. infoPlist
             infoPlist: .extendingDefault(
                 with: [
                     "TMDB_KEY" : "$(TMDB_KEY)",
@@ -35,10 +37,14 @@ let project = Project(
                     ],
                 ]
             ),
-            buildableFolders: [
-                "mega/Sources",
-                "mega/Resources",
-            ],
+            
+            // 2. sources
+            sources: ["mega/Sources/**"],
+            
+            // 3. resources
+            resources: ["mega/Resources/**"],
+            
+            // 4. dependencies (settings 앞으로 이동)
             dependencies: [
                 .external(name: "Alamofire"),
                 .external(name: "Kingfisher"),
@@ -48,8 +54,10 @@ let project = Project(
                 .external(name: "KakaoSDKCommon"),
                 .external(name: "KakaoSDKAuth"),
                 .external(name: "KakaoSDKUser"),
-
-            ]
+            ],
+            
+            // 5. settings (맨 뒤로 이동)
+            settings: settings
         ),
         .target(
             name: "megaTests",
@@ -57,9 +65,7 @@ let project = Project(
             product: .unitTests,
             bundleId: "dev.tuist.megaTests",
             infoPlist: .default,
-            buildableFolders: [
-                "mega/Tests"
-            ],
+            sources: ["mega/Tests/**"],
             dependencies: [
                 .target(name: "mega")
             ]
