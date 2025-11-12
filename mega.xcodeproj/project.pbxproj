@@ -3,10 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06D4E93C6A7033E6B877F1B5 /* KakaoSDKAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBBFAD750E13EE94EEDB048 /* KakaoSDKAuth.framework */; };
+		22ADF75E5AFECB18966AF58F /* KakaoOpenSDK_KakaoSDKCommon.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = B45D32224B5D3A171CB5B426 /* KakaoOpenSDK_KakaoSDKCommon.bundle */; };
+		741C91F81C8A5DE6A1DB056E /* Kingfisher_Kingfisher.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = E5E35D50E63209C67C6F0075 /* Kingfisher_Kingfisher.bundle */; };
+		81D2BC1CB26C291BF170B667 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F8C22B6131DCAF1604EB66 /* Moya.framework */; };
+		9AB09262DF8D07F5E790FEFB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA0A4AFAB334FA653A127AE /* CFNetwork.framework */; };
+		A80190E0D5EAA8DE34EE7D2B /* KakaoSDKUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565F1B5CD6A36560F06AF0E2 /* KakaoSDKUser.framework */; };
+		ADD932BDD526304BBD9754F4 /* Kingfisher_Kingfisher.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E5E35D50E63209C67C6F0075 /* Kingfisher_Kingfisher.bundle */; };
+		B16587D4BAD08C7D6EF2A536 /* KakaoOpenSDK_KakaoSDKCommon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B45D32224B5D3A171CB5B426 /* KakaoOpenSDK_KakaoSDKCommon.bundle */; };
+		BAB4ECC23A9AA177E09753DF /* KakaoSDKCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073AA87B2C1E049D2BB17CD3 /* KakaoSDKCommon.framework */; };
+		C0C348DF505577F18606C281 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B31588962EBC7D56A953D /* Alamofire.framework */; };
+		CBE175003DF73CD425D39AA6 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE300CDB3E90F79906541333 /* Kingfisher.framework */; };
+		CE8A6039A72CA969284942D2 /* Alamofire_Alamofire.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = 0097942C9D2B91B35DBE3EBD /* Alamofire_Alamofire.bundle */; };
+		D2B49F80696106FC706EDEC8 /* Alamofire_Alamofire.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0097942C9D2B91B35DBE3EBD /* Alamofire_Alamofire.bundle */; };
 		D9F327983AC5D32E3964D8EB /* TuistBundle+Mega.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE94283E0ADCBC6EDE5C0A /* TuistBundle+Mega.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,44 +54,42 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F95BA92537C6BFEA62694BF4 /* Dependencies */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstSubfolderSpec = 16;
+			files = (
+				CE8A6039A72CA969284942D2 /* Alamofire_Alamofire.bundle in Dependencies */,
+				22ADF75E5AFECB18966AF58F /* KakaoOpenSDK_KakaoSDKCommon.bundle in Dependencies */,
+				741C91F81C8A5DE6A1DB056E /* Kingfisher_Kingfisher.bundle in Dependencies */,
+			);
+			name = Dependencies;
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		007B31588962EBC7D56A953D /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0097942C9D2B91B35DBE3EBD /* Alamofire_Alamofire.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alamofire_Alamofire.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		073AA87B2C1E049D2BB17CD3 /* KakaoSDKCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KakaoSDKCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1755D00613EBBFF02D6404D1 /* megaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = megaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BBBFAD750E13EE94EEDB048 /* KakaoSDKAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KakaoSDKAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FE2765F30198837FBA2585 /* mega-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "mega-Info.plist"; sourceTree = "<group>"; };
+		565F1B5CD6A36560F06AF0E2 /* KakaoSDKUser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KakaoSDKUser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D8306635010519716F22C5B /* megaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "megaTests-Info.plist"; sourceTree = "<group>"; };
+		8AA0A4AFAB334FA653A127AE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		92F8C22B6131DCAF1604EB66 /* Moya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Moya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9376D96D011CDB95F57D3AE2 /* mega.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mega.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE300CDB3E90F79906541333 /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B45D32224B5D3A171CB5B426 /* KakaoOpenSDK_KakaoSDKCommon.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KakaoOpenSDK_KakaoSDKCommon.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FE94283E0ADCBC6EDE5C0A /* TuistBundle+Mega.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+Mega.swift"; sourceTree = "<group>"; };
+		E5E35D50E63209C67C6F0075 /* Kingfisher_Kingfisher.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Kingfisher_Kingfisher.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		61089572E925A88F04EE7343 /* Resources */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		81142FB6E0E78BDCB5BD8A12 /* Tests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		AC3C6B56FA730828AA95A9C8 /* Sources */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
+		61089572E925A88F04EE7343 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+		81142FB6E0E78BDCB5BD8A12 /* Tests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tests; sourceTree = "<group>"; };
+		AC3C6B56FA730828AA95A9C8 /* Sources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +97,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AB09262DF8D07F5E790FEFB /* CFNetwork.framework in Frameworks */,
+				C0C348DF505577F18606C281 /* Alamofire.framework in Frameworks */,
+				06D4E93C6A7033E6B877F1B5 /* KakaoSDKAuth.framework in Frameworks */,
+				BAB4ECC23A9AA177E09753DF /* KakaoSDKCommon.framework in Frameworks */,
+				A80190E0D5EAA8DE34EE7D2B /* KakaoSDKUser.framework in Frameworks */,
+				CBE175003DF73CD425D39AA6 /* Kingfisher.framework in Frameworks */,
+				81D2BC1CB26C291BF170B667 /* Moya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +141,7 @@
 			children = (
 				30C8915DAA80280103AA4BD0 /* Project */,
 				9DEE9C0581D7A11C8DDD2529 /* Products */,
+				D847E369DE80A666E9F7D1F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,10 +157,27 @@
 		9DEE9C0581D7A11C8DDD2529 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				0097942C9D2B91B35DBE3EBD /* Alamofire_Alamofire.bundle */,
+				007B31588962EBC7D56A953D /* Alamofire.framework */,
+				B45D32224B5D3A171CB5B426 /* KakaoOpenSDK_KakaoSDKCommon.bundle */,
+				2BBBFAD750E13EE94EEDB048 /* KakaoSDKAuth.framework */,
+				073AA87B2C1E049D2BB17CD3 /* KakaoSDKCommon.framework */,
+				565F1B5CD6A36560F06AF0E2 /* KakaoSDKUser.framework */,
+				E5E35D50E63209C67C6F0075 /* Kingfisher_Kingfisher.bundle */,
+				AE300CDB3E90F79906541333 /* Kingfisher.framework */,
 				9376D96D011CDB95F57D3AE2 /* mega.app */,
 				1755D00613EBBFF02D6404D1 /* megaTests.xctest */,
+				92F8C22B6131DCAF1604EB66 /* Moya.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D847E369DE80A666E9F7D1F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8AA0A4AFAB334FA653A127AE /* CFNetwork.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E861B6B0BD81AEF011BC0B8C /* Derived */ = {
@@ -196,14 +232,15 @@
 				73992A60FDCCD94BE6B4100B /* Resources */,
 				32C2AAA1ED914C6724BFE8A9 /* Frameworks */,
 				BF2839578921EB52037A2255 /* Embed Frameworks */,
+				F95BA92537C6BFEA62694BF4 /* Dependencies */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				AC3C6B56FA730828AA95A9C8 /* Sources */,
 				61089572E925A88F04EE7343 /* Resources */,
+				AC3C6B56FA730828AA95A9C8 /* Sources */,
 			);
 			name = mega;
 			packageProductDependencies = (
@@ -256,6 +293,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2B49F80696106FC706EDEC8 /* Alamofire_Alamofire.bundle in Resources */,
+				B16587D4BAD08C7D6EF2A536 /* KakaoOpenSDK_KakaoSDKCommon.bundle in Resources */,
+				ADD932BDD526304BBD9754F4 /* Kingfisher_Kingfisher.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,10 +450,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -500,10 +537,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

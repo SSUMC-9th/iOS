@@ -17,20 +17,20 @@ let project = Project(
             bundleId: "dev.tuist.mega",
             infoPlist: .extendingDefault(
                 with: [
-			"TMDB_KEY" : "$(TMDB_KEY)",
+                    "TMDB_KEY" : "$(TMDB_KEY)",
                     "UILaunchScreen": [
                         "UIColorName": "",
                         "UIImageName": "",
                     ],
-		"UIAppFonts": [
-			"Pretendard-Black.otf",
-			"Pretendard-Bold.otf",
-			"Pretendard-ExtraBold.otf",
-			"Pretendard-ExtraLight.otf",
-			"Pretendard-Light.otf",	
-			"Pretendard-Medium.otf",
+                    "UIAppFonts": [
+                        "Pretendard-Black.otf",
+                        "Pretendard-Bold.otf",
+                        "Pretendard-ExtraBold.otf",
+                        "Pretendard-ExtraLight.otf",
+                        "Pretendard-Light.otf",
+                        "Pretendard-Medium.otf",
                         "Pretendard-Regular.otf",
-			"Pretendard-SemiBold.otf",
+                        "Pretendard-SemiBold.otf",
                         "Pretendard-Thin.ttf"
                     ],
                 ]
@@ -39,7 +39,17 @@ let project = Project(
                 "mega/Sources",
                 "mega/Resources",
             ],
-            dependencies: []
+            dependencies: [
+                .external(name: "Alamofire"),
+                .external(name: "Kingfisher"),
+                .external(name: "Moya"),
+                
+                // 카카오 SDK
+                .external(name: "KakaoSDKCommon"),
+                .external(name: "KakaoSDKAuth"),
+                .external(name: "KakaoSDKUser"),
+
+            ]
         ),
         .target(
             name: "megaTests",
@@ -51,9 +61,8 @@ let project = Project(
                 "mega/Tests"
             ],
             dependencies: [
-		.target(name: "mega")
-
-		]
+                .target(name: "mega")
+            ]
         ),
     ]
 )
