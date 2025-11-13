@@ -50,6 +50,22 @@ struct LoginView: View {
             }
             .padding(.horizontal, 16)     // 좌우 여백
         }
+//        .onAppear(){
+//            if AuthApi.hasToken() {
+//                UserApi.shared.accessTokenInfo { info, error in
+//                    if let error = error {
+//                        print("❌ Token invalid:", error)
+//                    } else {
+//                        print("✅ Token valid, expires in:", info?.expiresIn ?? 0)
+//                    }
+//                }
+//            } else {
+//                print("❌ No Kakao token found")
+//            }
+//        }
+        .onOpenURL { url in
+            loginViewModel.handleKakaoAuthCallback(url: url, router: router)
+        }
         
 
     }
@@ -90,7 +106,7 @@ struct LoginView: View {
             let pwd = loginViewModel.loginModel.pwd
             let name = id + "_init"
 
-            // ✅ Keychain 저장
+            // Keychain 저장
             KeychainHelper.shared.save(id, forKey: "savedId")
             KeychainHelper.shared.save(pwd, forKey: "savedPwd")
             KeychainHelper.shared.save(name, forKey: "savedName")
