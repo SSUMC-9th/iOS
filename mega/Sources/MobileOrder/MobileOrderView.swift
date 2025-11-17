@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct MobileOrderView: View {
+    @State private var selectedTheater = "강남"
+    
     var body: some View {
         NavigationStack{
             ScrollView{
@@ -16,8 +18,12 @@ struct MobileOrderView: View {
                     megaLogo
                         .padding(.bottom, 17)
                         .padding(.leading, 16)
-                    theaterChange
-                        .padding(.bottom, 26)
+                    TheaterLocationBar(
+                        theaterName: selectedTheater,
+                        onChangeTap: {
+                            
+                        }
+                    )
                     
                     quickOrderSection
                     
@@ -45,59 +51,16 @@ struct MobileOrderView: View {
         }.frame(maxWidth: .infinity)
     }
     
-    private var theaterChange: some View {
-            HStack {
-                HStack(spacing: 8) {
-                    Image("map-pin")
-                        .foregroundColor(.white)
-                    Text("강남")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundColor(.white)
-                }
-
-                Spacer()
-
-                Button {
-
-                } label: {
-                    Text("극장 변경")
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundColor(Color("purple03"))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(Color.white)
-                        .cornerRadius(4)
-                }
-            }
-            .padding(.horizontal, 16)
-            .frame(maxWidth: .infinity)
-            .frame(height: 56)
-            .background(Color("purple03"))
-        }
-    
     private var quickOrderSection: some View {
             VStack(spacing: 20) {
                 HStack(spacing: 15) {
-                    OrderCard {
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("바로 주문")
-                                .font(.system(size: 22, weight: .bold))
-
-                            Text("이제 줄서지 말고\n모바일로 주문하고 픽업!")
-                                .font(.system(size: 13))
-                                .foregroundColor(.gray)
-
-                            Spacer()
-
-                            Image(systemName: "popcorn")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 48, height: 48)
-                                .foregroundColor(.black)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                        }
+                    QuickOrderCard(
+                        title: "바로 주문",
+                        description: "이제 줄서지 말고\n모바일로 주문하고 픽업!",
+                        iconName: "popcorn"
+                    ) {
+                        // 주문 액션
                     }
-                    .frame(height: 278)
 
                     VStack(spacing: 10) {
                         OrderCard {

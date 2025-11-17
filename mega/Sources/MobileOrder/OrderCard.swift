@@ -30,6 +30,3 @@ struct OrderCard<Content: View>: View {
     }
 }
 
-#Preview{
-    
-}
