@@ -38,10 +38,10 @@ struct RainbowView: View {
     
     private var bottomSelectColorGroup:some View{
         VStack(spacing:70, content:{
-            Image(.appleWeek3)
-                .renderingMode(.template)
-                .fixedSize()
-                .foregroundStyle(viewModel.appleLogoColor ?? Color.black)
+//            Image(.appleWeek3)
+//                .renderingMode(.template)
+//                .fixedSize()
+//                .foregroundStyle(viewModel.appleLogoColor ?? Color.black)
             
             Text("현재 선택된 색상: \(selectedColorName())")
                 .font(.title)

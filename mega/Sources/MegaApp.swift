@@ -7,6 +7,7 @@ import KakaoSDKAuth
 struct MegaApp: App {
     
     init() {
+        print("TMDB bearer length =", TMDBKeys.bearer.count)
         KakaoSDK.initSDK(appKey: KakaoKeys.nativeAppKey)
         }
     

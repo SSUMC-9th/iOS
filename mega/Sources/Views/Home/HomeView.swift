@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @AppStorage("movieName") private var movieName: String = ""
-    @State private var viewModel: MegaMovieViewModel = .init()
+//    @State private var viewModel: MegaMovieViewModel = .init()
+    @State private var vm = HomeViewModel()
     
     var body: some View {
         NavigationStack{
@@ -34,6 +35,7 @@ struct HomeView: View {
                 
             }.frame(maxWidth: .infinity, maxHeight:.infinity)
                 .background(Color.white)
+                .task { await vm.loadNowPlaying() }
         }
     }
     
@@ -97,18 +99,25 @@ struct HomeView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
-    private var moviePoster:some View {
-        ScrollView(.horizontal){
-            LazyHStack(spacing:24){
-                ForEach(viewModel.movieViewModel) { movie in
-                    NavigationLink(destination: {MovieDetail(movie:movie)}){
-                        MegaMovieCard(movieInfo: movie)
+    private var moviePoster: some View {
+            ScrollView(.horizontal) {
+                LazyHStack(spacing: 24) {
+                    ForEach(vm.cards) { movie in
+//                        NavigationLink(value: movie.id) {
+//                            MegaMovieCard(movie: movie)
+//                        }
+                        NavigationLink {
+                                MovieDetail(card: movie)
+                            } label: {
+                                MegaMovieCard(movie: movie)
+                        }
                     }
                 }
+                .padding(.trailing, 16)
             }
-        }.frame(maxWidth: .infinity)
-        .scrollIndicators(.hidden)
-    }
+            .frame(maxWidth: .infinity)
+            .scrollIndicators(.hidden)
+        }
     
     private var moviePid:some View{
         HStack{
