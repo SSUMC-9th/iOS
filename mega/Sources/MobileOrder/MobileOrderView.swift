@@ -54,13 +54,15 @@ struct MobileOrderView: View {
     private var quickOrderSection: some View {
             VStack(spacing: 20) {
                 HStack(spacing: 15) {
-                    QuickOrderCard(
-                        title: "바로 주문",
-                        description: "이제 줄서지 말고\n모바일로 주문하고 픽업!",
-                        iconName: "popcorn"
-                    ) {
-                        // 주문 액션
-                    }
+                    NavigationLink {
+                        QuickOrderDetailView()
+                    } label: {
+                        QuickOrderCard(
+                            title: "바로 주문",
+                            description: "이제 줄서지 말고\n모바일로 주문하고 픽업!",
+                            iconName: "popcorn"
+                        )
+                    }.buttonStyle(.plain)
 
                     VStack(spacing: 10) {
                         OrderCard {
@@ -132,9 +134,21 @@ struct MobileOrderView: View {
 
         var recommendedMenus: [MenuItemModel] {
             [
-                .init(title: "러브 콤보",  price: 10900, imageName: "loveCombo"),
-                .init(title: "더블 콤보",  price: 24900, imageName: "doubleCombo"),
-                .init(title: "디즈니 픽사 패키지", price: 15900, imageName: "pixarCombo")
+                .init(title: "러브 콤보",  price: 10900, imageName: "loveCombo",
+                      isBest: nil,
+                      isRecommended: nil,
+                      isSoldOut: false,
+                      discountRate: nil),
+                .init(title: "더블 콤보",  price: 24900, imageName: "doubleCombo",
+                      isBest: nil,
+                      isRecommended: nil,
+                      isSoldOut: false,
+                      discountRate: nil),
+                .init(title: "디즈니 픽사 패키지", price: 15900, imageName: "pixarCombo",
+                      isBest: nil,
+                      isRecommended: nil,
+                      isSoldOut: false,
+                      discountRate: nil)
             ]
         }
 
@@ -150,7 +164,7 @@ struct MobileOrderView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
                         ForEach(recommendedMenus) { item in
-                            RecommendedMenuCard(item: item)
+                            MenuItemCard(item: item)
                         }
                     }
                     .padding(.vertical, 4)
@@ -164,9 +178,21 @@ struct MobileOrderView: View {
     
     var bestMenus: [MenuItemModel] {
         [
-            .init(title: "싱글 콤보",  price: 10900, imageName: "loveCombo"),
-            .init(title: "더블 콤보",  price: 24900, imageName: "doubleCombo"),
-            .init(title: "러브 콤보 패키지", price: 15900, imageName: "loveCombo")
+            .init(title: "싱글 콤보",  price: 10900, imageName: "loveCombo",
+                  isBest: nil,
+                  isRecommended: nil,
+                  isSoldOut: false,
+                  discountRate: nil),
+            .init(title: "더블 콤보",  price: 24900, imageName: "doubleCombo",
+                  isBest: nil,
+                  isRecommended: nil,
+                  isSoldOut: false,
+                  discountRate: nil),
+            .init(title: "러브 콤보 패키지", price: 15900, imageName: "loveCombo",
+                  isBest: nil,
+                  isRecommended: nil,
+                  isSoldOut: false,
+                  discountRate: nil)
         ]
     }
     private var bestMenuSection: some View {
@@ -181,7 +207,7 @@ struct MobileOrderView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(bestMenus) { item in
-                        RecommendedMenuCard(item: item)
+                        MenuItemCard(item: item)
                     }
                 }
                 .padding(.vertical, 4)

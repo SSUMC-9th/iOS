@@ -11,35 +11,31 @@ struct QuickOrderCard: View {
     let title: String
     let description: String
     let iconName: String
-    var onTap: () -> Void = {}
 
     var body: some View {
-        Button(action: onTap) {
-            OrderCard {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text(title)
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundStyle(.black)
+        OrderCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Text(title)
+                    .font(.system(size: 22, weight: .bold))
 
-                    Text(description)
-                        .font(.system(size: 13))
-                        .foregroundStyle(.gray)
+                Text(description)
+                    .font(.system(size: 13))
+                    .foregroundStyle(.gray)
 
+                Spacer()
+
+                HStack {
                     Spacer()
-
-                    HStack {
-                        Spacer()
-                        Image(systemName: iconName)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 48, height: 48)
-                    }
+                    Image(systemName: iconName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 48, height: 48)
                 }
             }
         }
-        .buttonStyle(.plain)
     }
 }
+
 
 #Preview {
     QuickOrderCard(
