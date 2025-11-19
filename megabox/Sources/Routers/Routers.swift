@@ -6,4 +6,5 @@ enum Route: Hashable {
     case memberInfo              // 프로필 → 회원정보 관리
     case home
     case login
+    case directOrderDetail           // 바로 주문 상세
 }

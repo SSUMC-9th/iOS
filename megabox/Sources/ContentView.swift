@@ -22,6 +22,8 @@ public struct ContentView: View {
                                 MainTabView()
                             case .login:
                                 LoginView()
+                            case .directOrderDetail:
+                                DirectOrderDetailView()
                             }
                         }
                 }
