@@ -9,7 +9,17 @@ struct MovieBookingView: View {
                 movieSection
                     .padding(.bottom, 10)
                 theaterSection
+                
+                if viewModel.canShowDates {
+                    dateWeekSection
+                }
+                
+                if viewModel.canShowTimes {
+                    showtimeSection
+                }
+
                 Spacer()
+                
             }
             .padding(16)
             .background(Color.white)
@@ -126,6 +136,123 @@ struct MovieBookingView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+
+    private var dateWeekSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("날짜 선택")
+                .font(.semiBold16)
+                .foregroundColor(.black)
+
+            // 7열 고정 (한 줄)
+            let cols = Array(repeating: GridItem(.flexible(), spacing: 6), count: 7)
+
+            LazyVGrid(columns: cols, spacing: 0) {
+                ForEach(Array(viewModel.availableDates.enumerated()), id: \.offset) { idx, date in
+                    let selected = viewModel.isSameDay(viewModel.selectedDate, date)
+
+                    Button {
+                        viewModel.selectedDate = date
+                        
+                        Task {
+                            if let movie = viewModel.selectedMovie,
+                               !viewModel.selectedTheaters.isEmpty,
+                               let date = viewModel.selectedDate {
+                                await viewModel.fetchShowtimes(for: movie, theaters: viewModel.selectedTheaters, date: date)
+                            }
+                        }
+                    } label: {
+                        VStack(spacing: 4) {
+                            Text(viewModel.day(date))
+                                .font(.semiBold16)
+                                .foregroundColor(selected ? .white
+                                                         : viewModel.weekendColor(for: date, selected: false))
+                            Text(viewModel.dayCaption(date))   // "오늘/내일/요일"
+                                .font(.medium13)
+                                .foregroundColor(selected ? .white : Color("gray05"))
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                        .background(selected ? Color("purple03") : .clear)
+                        .cornerRadius(12)
+                    }
+                    .disabled(!viewModel.canShowDates)
+                }
+            }
+        }
+    }
+    
+    private var showtimeSection: some View {
+        let groups: [TheaterShowtimes] = viewModel.showtimeGroups
+
+        return VStack(alignment: .leading, spacing: 12) {
+            ForEach(groups, id: \.id) { theater in
+                TheaterBlock(theater: theater)
+            }
+        }
+    }
+
+    private struct TheaterBlock: View {
+        let theater: TheaterShowtimes
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 8) {
+                // 극장명: 항상 왼쪽 정렬
+                Text(theater.branch)
+                    .font(.bold18)
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 8)
+                
+                // 상영관/시간 유무에 따른 분기
+                if theater.rooms.isEmpty {
+                    Text("상영 정보가 없습니다")
+                        .font(.medium14)
+                        .foregroundColor(Color("gray05"))
+                        .padding(.leading, 8)
+                } else {
+                    ForEach(theater.rooms, id: \.id) { room in
+                        RoomRow(room: room)
+                    }
+                }
+            }
+            .padding(.bottom, 8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    private struct RoomRow: View {
+        let room: RoomShowtimes
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text(room.name)
+                        .font(.semiBold14)
+
+                    if let format = room.format {
+                        Text(format)
+                            .font(.medium08)
+                            .foregroundColor(.gray)
+                    }
+                }
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(room.times, id: \.id) { time in
+                            Text(time.start)
+                                .font(.semiBold14)
+                                .padding(.vertical, 6)
+                                .padding(.horizontal, 10)
+                                .background(Color("gray01"))
+                                .cornerRadius(8)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 }
 
 #Preview {
@@ -134,9 +261,9 @@ struct MovieBookingView: View {
 
 
 #Preview("iPhone 11") {
-    HomeView()
+    MovieBookingView()
 }
 
 #Preview("iPhone 16 Pro Max") {
-    HomeView()
+    MovieBookingView()
 }

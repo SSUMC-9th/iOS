@@ -17,7 +17,7 @@ struct MainTabView: View {
             
             
             Tab("모바일 오더", systemImage: "ticket.fill", value: 2) {
-                HomeView()
+                OrderView()
             }
             
             

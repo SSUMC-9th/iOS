@@ -55,3 +55,6 @@ fastlane/test_output/
 #
 # Tuist 프로젝트의 설정 파일
 /.tuist/
+
+# Secret file
+*.xcconfig
