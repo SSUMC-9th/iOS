@@ -8,11 +8,11 @@ struct RecommendedMenuSectionView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("추천 메뉴")
                     .font(.bold22)
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
                 
                 Text("영화 볼때 뭐먹지 고민될 땐 추천 메뉴!")
                     .font(.regular12)
-                    .foregroundColor(Color("gray04"))
+                    .foregroundStyle(Color("gray04"))
             }
             
             ScrollView(.horizontal, showsIndicators: false) {
