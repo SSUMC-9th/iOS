@@ -43,12 +43,12 @@ struct TopLeftTextLayoutStyle: ViewModifier {
             VStack(alignment: .leading, spacing: 8) {
                 Text(title)
                     .font(titleFont)
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
                 
                 if let description = description {
                     Text(description)
                         .font(.regular12)
-                        .foregroundColor(Color("gray04"))
+                        .foregroundStyle(Color("gray04"))
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -63,7 +63,7 @@ struct TopLeftTextLayoutStyle: ViewModifier {
                     Spacer()
                     Image(systemName: iconName)
                         .font(.system(size: iconSize, weight: .light))
-                        .foregroundColor(.black)
+                        .foregroundStyle(.black)
                 }
             }
             .padding(.horizontal, 12)
@@ -105,12 +105,12 @@ struct HorizontalLayoutStyle: ViewModifier {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(title)
                         .font(titleFont)
-                        .foregroundColor(.black)
+                        .foregroundStyle(.black)
                     
                     if let description = description {
                         Text(description)
                             .font(.regular13)
-                            .foregroundColor(Color("gray04"))
+                            .foregroundStyle(Color("gray04"))
                     }
                 }
                 
@@ -119,7 +119,7 @@ struct HorizontalLayoutStyle: ViewModifier {
                 // 아이콘
                 Image(systemName: iconName)
                     .font(.system(size: iconSize, weight: .light))
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 15)
