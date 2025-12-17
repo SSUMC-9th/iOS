@@ -4,6 +4,9 @@ import SwiftUI
 struct UserInfo: View {
     @EnvironmentObject var session: UserSession
     @State private var isShowingManage: Bool = false
+    
+    @State private var profileImage: UIImage? = nil
+    @State private var isShowingImagePicker: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -42,10 +45,35 @@ struct UserInfo: View {
                 session.displayName = name
             }
         }
+        .sheet(isPresented: $isShowingImagePicker) {
+                ImagePicker(image: $profileImage)
+        }
     }
 
     private var profileHeader: some View {
         HStack(spacing: 0) {
+            ZStack {
+                if let image = profileImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Image(systemName: "person.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.black)
+                        .padding(6)
+                }
+            }
+            .frame(width: 48, height: 48)
+            .background(Color.white)
+            .clipShape(Circle())
+            .contentShape(Circle())
+            .padding(.trailing, 4)
+            .onLongPressGesture(minimumDuration: 1.0) {
+                        isShowingImagePicker = true
+            }
+            
             Text("\(session.displayName.isEmpty ? "회원" : session.displayName)님")
                 .font(.system(size: 24, weight: .bold))
                 .foregroundStyle(.black)
