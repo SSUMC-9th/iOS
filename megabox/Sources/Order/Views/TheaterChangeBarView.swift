@@ -21,7 +21,7 @@ struct TheaterChangeBarView: View {
             // 왼쪽: 위치 아이콘과 극장명
             HStack(spacing: 8) {
                 Image(systemName: "mappin.circle.fill")
-                    .foregroundColor(style == .purple ? .white : .black)
+                    .foregroundStyle(style == .purple ? .white : .black)
                     .font(.system(size: 16))
                 
                 Text(selectedTheater)
@@ -37,7 +37,7 @@ struct TheaterChangeBarView: View {
             } label: {
                 Text("극장 변경")
                     .font(.semiBold13)
-                    .foregroundColor(style == .purple ? .white : Color("purple03"))
+                    .foregroundStyle(style == .purple ? .white : Color("purple03"))
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .overlay(

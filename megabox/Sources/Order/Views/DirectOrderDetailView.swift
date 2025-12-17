@@ -37,14 +37,14 @@ struct DirectOrderDetailView: View {
                     router.pop()
                 } label: {
                     Image(systemName: "chevron.left")
-                        .foregroundColor(.black)
+                        .foregroundStyle(.black)
                         .font(.system(size: 18, weight: .medium))
                 }
                 
                 // 타이틀
                 Text("바로주문")
                     .font(.semiBold18)
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
                 
                 Spacer()
                 
@@ -53,7 +53,7 @@ struct DirectOrderDetailView: View {
                     // 장바구니 액션
                 } label: {
                     Image(systemName: "cart")
-                        .foregroundColor(.black)
+                        .foregroundStyle(.black)
                         .font(.system(size: 20))
                 }
             }

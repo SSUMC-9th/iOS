@@ -287,6 +287,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = H2KJ74MDG3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/megabox-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -294,7 +295,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.tuist.megabox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.umc.sunny;
 				PRODUCT_NAME = megabox;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
@@ -339,6 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = H2KJ74MDG3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/megabox-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -346,7 +348,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.tuist.megabox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.umc.sunny;
 				PRODUCT_NAME = megabox;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;

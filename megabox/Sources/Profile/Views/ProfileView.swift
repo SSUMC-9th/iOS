@@ -11,6 +11,13 @@ struct ProfileView: View {
     @AppStorage("savedName") private var savedName: String = ""
     @EnvironmentObject var router: NavigationRouter   // 추가
 
+    //프로필 사진 기능
+    @State private var showImagePicker = false
+    @State private var selectedImages: [UIImage] = []
+    
+    private var selectedImage: UIImage? {
+        selectedImages.first
+    }
     
     var body: some View {
         
@@ -18,10 +25,14 @@ struct ProfileView: View {
             Color.white
                 .ignoresSafeArea()   // 안전 영역(노치, 홈바 영역)까지 채우기
             VStack {
-                headerView
-                    .padding(.top, 59)   // 상단 여백
-                
-                memberShipPointView
+                HStack {
+                    profileImageView
+                    VStack {
+                        headerView
+                        memberShipPointView
+                    }
+                }
+                .padding(.top, 59)   // 상단 여백
                 
                 clubMembershipButtonView
                     .padding(.top, 15)
@@ -55,6 +66,38 @@ struct ProfileView: View {
             } else {
                 savedName = ""
                 print("Keychain에서 이름 없음")
+            }
+        }
+    }
+    
+    private var profileImageView: some View {
+        ZStack {
+            // 업로드된 프로필 이미지
+            if let selectedImage {
+                Image(uiImage: selectedImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 55, height: 55)
+                    .clipShape(Circle())
+            } else {
+                // 기본 아이콘
+                Image(systemName: "person.crop.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 55, height: 55)
+                    .foregroundStyle(Color("gray04"))
+            }
+        }
+        .onLongPressGesture(minimumDuration: 1.0) {
+            showImagePicker = true
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(images: $selectedImages, selectedLimit: 1)
+        }
+        .onChange(of: selectedImages) { oldValue, newValue in
+            // 이미지가 선택되면 첫 번째 이미지만 유지
+            if newValue.count > 1 {
+                selectedImages = Array(newValue.prefix(1))
             }
         }
     }

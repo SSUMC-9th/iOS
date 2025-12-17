@@ -11,7 +11,7 @@ struct BestBadgeModifier: ViewModifier {
             if isBest {
                 Text("BEST")
                     .font(.medium10)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
                     .background(Color.red)
@@ -33,7 +33,7 @@ struct RecommendedBadgeModifier: ViewModifier {
             if isRecommended {
                 Text("추천")
                     .font(.medium10)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
                     .background(Color.blue)
@@ -58,7 +58,7 @@ struct SoldOutModifier: ViewModifier {
                 
                 Text("품절")
                     .font(.bold18)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
             }
         }
     }

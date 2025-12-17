@@ -24,24 +24,24 @@ struct MenuItemCardView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(menuItem.name)
                     .font(.regular13)
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
                 
                 // 가격 표시
                 if let originalPrice = menuItem.originalPrice {
                     HStack(spacing: 4) {
                         Text("\(formatPrice(menuItem.price))원")
                             .font(.semiBold14)
-                            .foregroundColor(.black)
+                            .foregroundStyle(.black)
                         
                         Text("\(formatPrice(originalPrice))원")
                             .font(.regular09)
-                            .foregroundColor(Color("gray04"))
+                            .foregroundStyle(Color("gray04"))
                             .strikethrough()
                     }
                 } else {
                     Text("\(formatPrice(menuItem.price))원")
                         .font(.semiBold14)
-                        .foregroundColor(.black)
+                        .foregroundStyle(.black)
                 }
             }
         }
