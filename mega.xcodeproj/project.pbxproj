@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		06D4E93C6A7033E6B877F1B5 /* KakaoSDKAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBBFAD750E13EE94EEDB048 /* KakaoSDKAuth.framework */; };
 		0774993CB44FB43A66A654C3 /* ReservView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2F379D4D6DB1C3AC6A714B /* ReservView.swift */; };
-		184D1BB92ED6F72300AE7CD3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D1BB82ED6F72300AE7CD3 /* ImagePicker.swift */; };
 		22ADF75E5AFECB18966AF58F /* KakaoOpenSDK_KakaoSDKCommon.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = B45D32224B5D3A171CB5B426 /* KakaoOpenSDK_KakaoSDKCommon.bundle */; };
 		23EF43487F5879A457CD7EC5 /* MegaNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CB1BD08768DD0216A6C80 /* MegaNavigationView.swift */; };
 		26DC7595512F1E556D08F254 /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B752A3EE90461773D76DF1A /* MovieCard.swift */; };
@@ -94,6 +93,7 @@
 		EDB5AC6765061F57EA1A18B8 /* ReservModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2C74285BA988C54E0B77D0 /* ReservModel.swift */; };
 		EF19696BDE3582F050C8D3DA /* MovieSchedule.json in Resources */ = {isa = PBXBuildFile; fileRef = 929E2F73A6C917BC0C6D4617 /* MovieSchedule.json */; };
 		EFF8F85C75A17F948E6F3CF4 /* TheaterLocationBarStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53F8D2B7E34484F0D83BCC8 /* TheaterLocationBarStyleModifier.swift */; };
+		FC38A0D5C4204593E1003540 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBC45756B9DE4655750B26 /* ImagePicker.swift */; };
 		FD399028D6631DFA9F415E6C /* MovieSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E6214E81FF95C79FB061E /* MovieSearchViewModel.swift */; };
 		FD9A02EC8DD4E2A5EEA4C9E5 /* ReservMovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFB0706ADBE9CF3012ED5CD /* ReservMovieCard.swift */; };
 		FDD14F5E2523C6D974269FBC /* MegaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298398B69F3EDF0D630FF917 /* MegaTests.swift */; };
@@ -155,7 +155,6 @@
 		14F3D435B97C681EDD95E2B5 /* RainbowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowView.swift; sourceTree = "<group>"; };
 		155D505B386849B0A5615171 /* KakaoTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoTokenResponse.swift; sourceTree = "<group>"; };
 		1755D00613EBBFF02D6404D1 /* megaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = megaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		184D1BB82ED6F72300AE7CD3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1D5A9A36F00EE8FE73084C7C /* DTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOMapper.swift; sourceTree = "<group>"; };
 		27E592789C2CFDEA4C86B1F5 /* MenuItemCardModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCardModifiers.swift; sourceTree = "<group>"; };
 		298398B69F3EDF0D630FF917 /* MegaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaTests.swift; sourceTree = "<group>"; };
@@ -174,6 +173,7 @@
 		4DA0D580B8F79528DAE7223B /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		4E271D1AA7263B737A93E240 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4F54A3CD0753E526965018BC /* NowPlayingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingResponse.swift; sourceTree = "<group>"; };
+		4FBBC45756B9DE4655750B26 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5343922B9C1F46AF5D4CB495 /* MovieDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModel.swift; sourceTree = "<group>"; };
 		565F1B5CD6A36560F06AF0E2 /* KakaoSDKUser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KakaoSDKUser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A8A55331EFE339C84CE861 /* MegaMovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaMovieCard.swift; sourceTree = "<group>"; };
@@ -307,10 +307,10 @@
 		3FABD3AD567296B1587EC4C4 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				4FBBC45756B9DE4655750B26 /* ImagePicker.swift */,
 				79CBA942DE31A56EBFD9E7CE /* UserInfo.swift */,
 				2A81C3B339439E2BAD4375B4 /* UserInfoManage.swift */,
 				F2C92DB3C0B160F20977BCE5 /* UserSession.swift */,
-				184D1BB82ED6F72300AE7CD3 /* ImagePicker.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -729,7 +729,6 @@
 				EB56E26E670A7E69675DA5F3 /* MenuItemCardModifiers.swift in Sources */,
 				AAF52F1F3A8632E8330C0AC0 /* MenuItemModel.swift in Sources */,
 				CE34B6FECF554B589D7A35E9 /* MobileOrderView.swift in Sources */,
-				184D1BB92ED6F72300AE7CD3 /* ImagePicker.swift in Sources */,
 				9ABB19ECBF7708C9B835E3FB /* OrderCard.swift in Sources */,
 				E50DCFC2386B19B1A9F89A11 /* QuickOrderCard.swift in Sources */,
 				9DBCC8CF99A77708E982054E /* QuickOrderDetailView.swift in Sources */,
@@ -769,6 +768,7 @@
 				0774993CB44FB43A66A654C3 /* ReservView.swift in Sources */,
 				E8818F4745D5833C295406FA /* ReservViewModel.swift in Sources */,
 				E75DE42EACACF83C6703BF2E /* SplashView.swift in Sources */,
+				FC38A0D5C4204593E1003540 /* ImagePicker.swift in Sources */,
 				D0E66919956BF1F76CB0B26C /* UserInfo.swift in Sources */,
 				6F11B52352D194BE15B2A568 /* UserInfoManage.swift in Sources */,
 				AE7FFA4050EF717764188545 /* UserSession.swift in Sources */,
@@ -925,7 +925,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1013,7 +1016,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
